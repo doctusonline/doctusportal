@@ -25,9 +25,14 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
         
+        <!-- laravel Styles -->
+        <link rel="stylesheet" href="{{ asset('css/scss/default.css') }} ">  
+        
         <style>
             .dp-main-content { padding:30px 0; }
         </style>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         
 </head>
 
@@ -52,19 +57,20 @@
                                         <span class="icon-bar"></span>
                                 </button>
 
-                                <form class="search-container" method="get" action="https://doctus.com.au/catalogsearch/result/">
+<!--                            <form class="search-container" method="get" action="https://doctus.com.au/catalogsearch/result/">
                                   <input id="search_1" type="text" placeholder="Search" class="search-box snize-input-style" name="q" autocomplete="off">
                                   <label for="search_1"><span class="glyphicon glyphicon-search search-icon"></span></label>
                                   <input type="submit" id="search-submit">
                                 </form>
+-->
 
                         </div>
                                          <div class="col-md-8 col-sm-8">
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
-                                       <li> <a href="https://doctus.com.au/customer/medicalhistory/">My Medical History</a> </li>
-                                        <li> <a href="https://doctus.com.au/customer/medicalhistory/">My Patient Record</a> </li>
+                                       <li> <a href="#">Orders (1)</a> </li>
+                                        <li> <a href="#">My Inbox (2)</a> </li>
                                         
                                         
                                       
@@ -96,29 +102,25 @@
         </nav>
 
             <div class="container">
-                <div class="row logo">
-                    <div class="left">
+                <div class="row " >
+                    <div class="left col-md-3">
                         <a href="{{ url('/') }}"> <img class="img-responsive" src="https://doctus.com.au/skin/frontend/default/doctus_theme/images/logo.png" alt="doctus"> </a>
                     </div> 
-                    <div class=" right">
-                        <ul class="nav navbar-nav  main main-menu-dropdown">
-                            <li class="dropdown-custom "> 
-                                <a href="#">TEST<span class="caret"></span></a> 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">test</a></li>
-                                    <li><a href="#">test</a></li>
-                                </ul>
-                            </li>
-                            <li class=""> <a href="#">TEST II</a> </li>
-                            <li class=""> <a href="#">TEST III</a> </li>
-                        </ul>
+                    <div class="right col-md-9">
+                        
+<!--                        <ul class="nav navbar-nav">
+                            <li class=""> <a href="#">MEDICATIONS</a> </li> 
+                                <li class=""> <a href="#">OUR SERVICES</a> </li>
+                                <li class=""> <a href="#">ABOUT</a> </li>
+                        </ul>-->
+                        
                     </div>
                     <div class="clear"> </div>
                 </div> <!--/logo -->
             </div>        
         </div> <!-- /freeze -->
 
-             <section class="page-nav-title">
+            <section class="page-nav-title">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-sm-6"><h1>Doctor's Portal </h1></div>
@@ -143,26 +145,19 @@
 
     <div class="container"> <!-- Main Content -->
            <div class="row">
-                <div class="col-md-12">
+                
                         
                     @yield('content')
                     
                     
-                </div>
+                
            </div>
 
     </div> <!-- / Main Content -->
 
     <section class="footer">
         <div class="container">
-          <div class="row m-b-sm">
-            <ul class="list-inline">
-              <li class="first"><a title="Privacy Poli" href="https://doctus.com.au/privacypolicy/">Privacy Policy</a></li>
-              <li><a title="FAQ" href="https://doctus.com.au/faq/">FAQ</a></li>
-              <li><a title="Terms &amp; Conditions" href="https://doctus.com.au/terms-and-conditions/">Terms &amp; Conditions</a></li>
-              <li><a title="Contact Us" href="https://doctus.com.au/contacts/">Contact Us</a></li>
-            </ul>
-          </div>
+
           <div class="row m-b-sm">
             <ul class="list-inline social">
               <li> <a target="_blank" href="https://twitter.com/DoctusAU"> <img src="https://doctus.com.au/skin/frontend/default/doctus_theme/images/twitter.png" /> </a> </li>
