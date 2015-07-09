@@ -27,6 +27,7 @@
             </style>
             
             <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+            <script data-require="angular.js@1.2.x" src="http://code.angularjs.org/1.2.1/angular-sanitize.js" data-semver="1.2.1"></script>
             
         <!-- Scripts -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

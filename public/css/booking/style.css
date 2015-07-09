@@ -554,6 +554,20 @@ img {
 .modal.in .modal-dialog {
   z-index: 10000; 
 }
+.loading{
+	background-image: url("../../images/ajax-loader.gif");
+    background-repeat: no-repeat;
+    background-size: 50px auto;
+    height: 50px;
+    left: 43%;
+    position: absolute;
+    top: 88px;
+    width: 50px;
+    z-index: 10;
+}
+.ng-scope{
+	position: relative;
+}
 /*** End Chikito - Added ***/
 
 .clear {
