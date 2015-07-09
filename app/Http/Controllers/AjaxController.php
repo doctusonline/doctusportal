@@ -4,82 +4,48 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-
+use App\Orders;
+use App\Mageorders;
 class AjaxController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-		return view('orders.index');
+	public function index(){
+		return view('generate.index');
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+	public function orders(Request $request){
+		$data = $request->get('data');
+		$range = $request->get('range');
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+		switch ($range) {
+			case 'month':
+				$orders_obj = json_decode($data);
+				print_r($orders_obj);
+				foreach ($orders_obj as $key => $value) {
+					$orders = new Orders;
+					$mageorders = new Mageorders;
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+					if($orders->where('sku',$value->sku)->count()){						
+						$orders->where('sku',$value->sku);
+						$mageorders->where('sku', $value->sku);
+					}
+					$orders->sku = $value->sku;
+					$orders->product = $value->product;
+					$orders->save();
+					$orders->mageorders()->attach($value->id);
+					$mageorders->order_id = $value->id;
+					$mageorders->sku = $value->sku;
+					$mageorders->product = $value->product;
+					$mageorders->save();
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+				}
+				break;
+			
+			default:
+				# code...
+				break;
+		}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
+		return $range;
 	}
 
 }

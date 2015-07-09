@@ -13,8 +13,18 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('home', 'HomeController@index');
-Route::resource('ajax', 'AjaxController');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::get('generate','AjaxController@index');
+Route::get('booking','BookingController@index');
+Route::get('booking/test','BookingController@test');
+
+/* Ajax Controller */
+Route::group(array('prefix' => 'api'), function(){
+	Route::post('generate/orders', 'AjaxController@orders');	
+	Route::post('booking/create', 'BookingController@create');	
+	Route::post('payment/create', 'PaymentController@create');	
+});

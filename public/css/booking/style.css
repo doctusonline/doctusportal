@@ -1,0 +1,662 @@
+﻿@font-face {
+    font-family: 'proxima_nova';
+    src: url('../../fonts/proximanova-reg-webfont.eot');
+    src: url('../../fonts/proximanova-reg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/proximanova-reg-webfont.woff2') format('woff2'),
+         url('../../fonts/proximanova-reg-webfont.woff') format('woff'),
+         url('../../fonts/proximanova-reg-webfont.ttf') format('truetype'),
+         url('../../fonts/proximanova-reg-webfont.svg#proxima_nova_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'proxima_nova';
+    src: url('../../fonts/proximanova-bold-webfont.eot');
+    src: url('../../fonts/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/proximanova-bold-webfont.woff2') format('woff2'),
+         url('../../fonts/proximanova-bold-webfont.woff') format('woff'),
+         url('../../fonts/proximanova-bold-webfont.ttf') format('truetype'),
+         url('../../fonts/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'roboto_slab';
+    src: url('../../fonts/RobotoSlab-Regular-webfont.eot');
+    src: url('../../fonts/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../../fonts/RobotoSlab-Regular-webfont.woff2') format('woff2'),
+         url('../../fonts/RobotoSlab-Regular-webfont.woff') format('woff'),
+         url('../../fonts/RobotoSlab-Regular-webfont.ttf') format('truetype'),
+         url('../../fonts/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html {
+    -webkit-text-size-adjust: none;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+	font-family: 'proxima_nova', Arial, sans-serif;
+	font-size: 16px;
+	text-align: center;
+	color: #2d2d2d;
+	line-height: 1.2;
+	background: #ededed;
+}
+
+/* Main Wrapper */
+
+#mainWrapper {
+	text-align: left;
+	margin: 0 auto;
+	padding: 0 10px;
+	min-width: 320px;
+	overflow: hidden;
+}
+
+/* Wrapper */
+
+#wrapper {
+	max-width: 410px;
+	margin: 0 auto;
+}
+
+/* Header */
+
+#header {
+	position: relative;
+	height: 37px;
+	margin: 0 -10px 23px;
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.13);
+	-moz-box-shadow: 0 1px 3px 0 rgba(0,0,0,0.13);
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,0.13);
+}
+
+#header .logo {
+	position: absolute;
+	left: 50%;
+	bottom: -16px;
+	margin-left: -16px;
+	width: 32px;
+	height: 32px;
+	background: url(../../images/logo.png) no-repeat;
+	text-indent: -9999em;
+	-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	background-size: 100%;
+}
+
+/* Get Help */
+
+#getHelp {
+	background: #fff;
+	margin: 0 0 6px;
+}
+
+#getHelp ul {
+	margin: 0;
+	padding: 0 5px;
+}
+
+#getHelp ul li {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 12px;
+	border-top: 1px solid #ededed;
+	background-repeat: no-repeat;
+	background-position: 13px center;
+	-webkit-background-size: 18px;
+	-moz-background-size: 18px;
+	background-size: 18px;
+}
+
+#getHelp ul li:first-child {
+	border-top: 0;
+}
+
+#getHelp ul li a {
+	display: block;
+	min-height: 70px;
+	padding: 15px 72px 15px 43px;
+}
+
+#getHelp ul li a .title {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ed1c24;
+}
+
+#getHelp ul li a .cost {
+	display: block;
+	font-size: 10px;
+	color: #898989;
+}
+
+#getHelp ul li .arrow {
+	position: absolute;
+	right: 15px;
+	width: 42px;
+	top: 50%;
+	margin-top: -21px;
+	line-height: 42px;
+	background: #ed1c24;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+	font-weight: bold;
+	-webkit-border-radius: 42px;
+	-moz-border-radius: 42px;
+	border-radius: 42px;
+}
+
+#getHelp ul li.skype {
+	background-image: url(../../images/video-ico.png);
+}
+
+#getHelp ul li.questionnaire {
+	background-image: url(../../images/checklist-ico.png);
+}
+
+/* Rating */
+
+#rating {
+	background: #fff;
+	padding: 12px 0;
+}
+
+#rating .image {
+	float: left;
+	width: 77px;
+	margin-left: 16px;
+	-webkit-border-radius: 71px;
+	-moz-border-radius: 71px;
+	border-radius: 71px;
+}
+
+#rating .info {
+	margin-left: 111px;
+	padding-right: 10px;
+}
+
+#rating .info .name {
+	font-size: 15.98px;
+	font-weight: bold;
+	color: #4a4848;
+	padding-left: 18px;
+	background: url(../../images/caduceus-ico.png) no-repeat 0 3px;
+	-webkit-background-size: 12px;
+	-moz-background-size: 12px;
+	background-size: 12px;
+}
+
+#rating .info .type {
+	display: block;
+	font-size: 15.98px;
+	color: #4a4848;
+	margin-bottom: 2px;
+}
+
+#rating .info .stars {
+	margin: 0 0 1px;
+	padding: 0;
+}
+
+#rating .info .stars span {
+	display: inline-block;
+	width: 18px;
+	height: 17px;
+	margin-right: 3px;
+	background: url(../../images/star-ico.png) no-repeat;
+	-webkit-background-size: 100%;
+	-moz-background-size: 100%;
+	background-size: 100%;
+}
+
+#rating .info .location {
+	display: block;
+	font-size: 12px;
+	font-weight: bold;
+	color: #4a4848;
+	padding-left: 13px;
+	background: url(../../images/location-ico.png) no-repeat 2px 1px;
+	-webkit-background-size: 7px;
+	-moz-background-size: 7px;
+	background-size: 7px;
+}
+
+/* Satisfication */
+
+#satisfication {
+	padding: 7px 0;
+}
+
+#satisfication p {
+	margin: 0;
+	text-align: center;
+	font-size: 10px;
+	color: #959595;
+}
+
+#satisfication p span {
+	display: block;
+	font-size: 8px;
+}
+
+/* Appointment */
+
+#appointment {
+	padding: 15px 10px;
+	margin: 0 0 9px;
+	background: #fff;
+	font-size: 11px;
+	color: #7d7d7d;
+	text-align: center;
+}
+
+#appointment .date {
+	display: block;
+	font-size: 14px;
+	color: #2d2d2d;
+	margin: 7px 0;
+}
+
+#appointment .image {
+	display: block;
+	margin: 0 auto;
+	width: 58px;
+	margin-top: 7px;
+	-webkit-border-radius: 58px;
+	-moz-border-radius: 58px;
+	border-radius: 58px;
+}
+
+#appointment .name {
+	text-align: center;
+	color: #4a4848;
+	margin: 0;
+}
+
+#appointment .name span {
+	display: inline-block;
+	font-size: 15.98px;
+	font-weight: bold;
+	padding-left: 20px;
+	background: url(../../images/caduceus-ico.png) no-repeat 0 2px;
+	-webkit-background-size: 12px;
+	-moz-background-size: 12px;
+	background-size: 12px;
+}
+
+#appointment .name em {
+	display: block;
+	font-style: normal;
+}
+
+/* Pricing */
+
+#pricing {
+	padding: 15px;
+	margin: 0 0 7px;
+	background: #d3fbf4;
+	text-align: center;
+}
+
+#pricing p {
+	margin: 0;
+	font-size: 11px;
+	color: #7d7d7d;
+}
+
+#pricing p span {
+	display: block;
+	font-size: 22px;
+	font-weight: bold;
+	color: #2d2d2d;
+}
+
+/* Billing */
+
+#billing {
+	background: #fff;
+	padding: 0 7px 1px;
+	margin: 0 0 9px;
+}
+
+#billing .titlebar {
+	margin-left: -7px;
+	margin-right: -7px;
+	margin-bottom: 11px;
+}
+
+#billing .textbox {
+	display: block;
+	width: 100%;
+	border: 0;
+	padding: 5px 5px 5px 30px;
+	margin: 0 0 11px;
+	font-family: 'proxima_nova', Arial, sans-serif;
+	font-size: 14px;
+	color: #2d2d2d;
+	border-bottom: 1px solid #ededed;
+	outline: none;
+}
+
+#billing .textbox.name {
+	background: url(../../images/person-ico.png) no-repeat 3px 3px;
+	-webkit-background-size: 18px;
+	-moz-background-size: 18px;
+	background-size: 18px;
+}
+
+#billing .textbox.card {
+	background: url(../../images/card-ico.png) no-repeat 2px 3px;
+	-webkit-background-size: 20px;
+	-moz-background-size: 20px;
+	background-size: 20px;
+}
+
+#billing .textbox.expiry {
+	float: left;
+	padding-left: 2px;
+	width: 57.80141843971631%;
+}
+
+#billing .textbox.cvv {
+	float: right;
+	width: 35.46099290780142%;
+	padding-left: 2px;
+}
+
+/* Payment Methods */
+
+#paymentMethods {
+	margin: 11px 0;
+}
+
+#paymentMethods ul {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#paymentMethods ul li {
+	display: inline-block;
+	margin: 0 8px;
+	padding: 0;
+	width: 45px;
+	vertical-align: middle;
+	list-style: none;
+}
+
+/* Thank You */
+
+#thankyou {
+	padding: 20px 11px;
+	margin: 0 0 6px;
+	background: #fff;
+	text-align: center;
+	font-size: 12px;
+}
+
+#thankyou .title {
+	margin: 0 0 17px;
+	font-family: 'roboto_slab', Arial, sans-serif;
+	font-size: 28.46px;
+}
+
+#thankyou .title span {
+	display: inline-block;
+	padding-left: 41px;
+	background: url(../../images/calendar-ico.png) no-repeat 0 3px;
+	-webkit-background-size: 25px;
+	-moz-background-size: 25px;
+	background-size: 25px;
+}
+
+#thankyou .desc {
+	padding: 0 16px;
+}
+
+#thankyou .desc p {
+	margin: 0 0 20px;
+}
+
+#thankyou .btn {
+	display: block;
+	border: 2px solid #ed1c24;
+	line-height: 38px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #252525;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+/* Socials */
+
+#socials ul {
+	margin: 0;
+	padding: 11px 0 7px;
+	background: #fff;
+	text-align: center;
+}
+
+#socials ul li {
+	display: inline-block;
+	margin: 0 -4px 0 0;
+	padding: 0 10px;
+	list-style: none;
+	width: 20%;
+}
+
+#socials ul li a img {
+	display: block;
+	margin: 0 auto;
+}
+
+/* Back Link */
+
+#backLink {
+	text-align: center;
+	padding: 14px 0;
+	font-size: 10px;
+	color: #252525;
+}
+
+#backLink p {
+	margin: 0;
+}
+
+#backLink p a {
+	text-decoration: underline;
+}
+
+/* Miscelleneous */
+
+p {
+	margin: 0 0 25px;
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+	color: inherit;
+}
+
+img {
+	border: 0;
+	max-width: 100%;
+}
+
+.titlebar {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background: #d3fbf4;
+	border-bottom: 2px solid #a3f1e3;
+	padding: 12px 0;
+	margin: 0;
+}
+
+.titlebar span {
+	display: block;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.redBtn {
+	display: block;
+	width: 100%;
+	border: 0;
+	cursor: pointer;
+	text-align: center;
+	line-height: 48px;
+	background: #ed1c24;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	margin: 0 0 11px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-appearance: none;
+}
+
+/*** Chikito - Added ***/
+#getHelp ul li a:hover, #getHelp ul li a:focus{
+	text-decoration: none;
+	outline: none;
+}	
+.modal.in .modal-dialog {
+  z-index: 10000; 
+}
+/*** End Chikito - Added ***/
+
+.clear {
+	clear: both;
+}
+
+.clear {
+	clear: both;
+}
+
+.clearfix:after { 
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden; 
+}
+
+.clearfix { 
+  display: inline-block;  
+}
+
+* html .clearfix{  
+  height: 1%;  
+}
+
+.clearfix {  
+  display: block;  
+}
+
+input::-moz-focus-inner { 
+    border: 0;
+    padding: 0;
+}
+
+
+::-webkit-input-placeholder {
+	color: #2d2d2d;
+	opacity: 1;
+}
+
+:-moz-placeholder {
+	color: #2d2d2d;
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	color: #2d2d2d;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {  
+	color: #2d2d2d;
+	opacity: 1;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+input, select, textarea {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+/* Media Queries */
+
+/* Desktop Screens */
+
+@media only screen and (max-width : 1197px) {
+	.section {
+		max-width: 970px;
+	}
+}
+
+/* Tablet Screens */
+
+@media only screen and (max-width : 991px) {
+	.section {
+		max-width: 750px;
+	}
+}
+
+/* Mobile Screens (Landscape) */
+
+@media only screen and (max-width : 767px) {
+	.section {
+		max-width: 480px;
+}
+
+/* Mobile Screens (Landscape) */
+@media only screen and (max-width : 500px) {
+	.section {
+		max-width: 420px;
+	}
+}
+
+/* Mobile Screens (Portrait) */
+@media only screen and (max-width : 478px) { 
+	.section {
+		max-width: 320px;
+	}
+}
+

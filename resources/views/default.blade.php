@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('headtitle') | Doctus Online</title>
 
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<!-- <link href="{{ asset('/css/app.css') }}" rel="stylesheet"> -->
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -25,15 +25,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
         
+        <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datetimepicker.4.7.14.css') }} ">   -->
         <!-- laravel Styles -->
-        <link rel="stylesheet" href="{{ asset('css/scss/default.css') }} ">  
+        <link rel="stylesheet" href="{{ asset('css/scss/default-k.css') }} ">  
+        <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} "> 
         
         <style>
             .dp-main-content { padding:30px 0; }
         </style>
         
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js"></script>
         
+    <!-- Scripts -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -80,7 +87,7 @@
 						<li> <a class="btn btn-default signup" href="{{ url('/auth/register') }}" role="button">REGISTER</a> </li>
 					@else
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
@@ -143,7 +150,7 @@
     </div> <!-- / CMS Page Content -->
 
 
-    <div class="container"> <!-- Main Content -->
+    <div id="main-container" class="container"> <!-- Main Content -->
            <div class="row">
                 
                         
@@ -213,12 +220,8 @@
 	</nav>-->
 
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-        <!-- doctus custom js -->
-        <script type="text/javascript" src="https://doctus.com.au/skin/frontend/default/doctus_theme/js/doctus-custom.js"> </script>        
+    <!-- doctus custom js -->
+    <script type="text/javascript" src="https://doctus.com.au/skin/frontend/default/doctus_theme/js/doctus-custom.js"> </script>        
         
 </body>
 </html>
