@@ -20,7 +20,7 @@ Route::controllers([
 
 Route::get('generate','AjaxController@index');
 Route::get('booking','BookingController@index');
-Route::get('booking/test','BookingController@test');
+Route::get('bookingtest','BookingController@test');
 
 /* Ajax Controller */
 Route::group(array('prefix' => 'api'), function(){
