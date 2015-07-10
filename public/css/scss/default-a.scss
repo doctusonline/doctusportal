@@ -1,7 +1,43 @@
 #main-container{
-	padding-top: 30px;
+    padding-top: 30px;
 }
 
 .modal.in .modal-dialog{
-	z-index: 10000;
+    z-index: 10000;
+}
+
+.form-group a.btn{
+	color: #333;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-left: -20px;
+}
+
+.iframe-container {
+	.header, .footer{
+		background-color: #ED1C24;
+		color: #fff;
+		padding: 4px;
+	}
+}
+.iframe-container h3{
+	margin: 0;
+}
+
+.iframe-container .content-form{
+	padding: 20px;
+	background-color: #fff;
+}
+
+.continue-btn{
+	text-align: center;
+}
+.continue-btn .btn{
+	background-color: #ED1C24;
+	border: 0 none;
+}
+
+.transactioncustomer, .hide{
+	display: none;
 }

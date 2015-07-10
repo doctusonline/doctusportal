@@ -559,9 +559,9 @@ img {
     background-repeat: no-repeat;
     background-size: 50px auto;
     height: 50px;
-    left: 43%;
-    position: absolute;
-    top: 88px;
+    left: 48%;
+    position: fixed;
+    top: 24%;
     width: 50px;
     z-index: 10;
 }

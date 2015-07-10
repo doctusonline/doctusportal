@@ -21,7 +21,6 @@
             
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
             <link rel="stylesheet" href="{{ asset('css/booking/style.css') }} ">  
-            
             <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} ">  
             <style>
                 .dp-main-content { padding:30px 0; }
@@ -38,13 +37,19 @@
 
 
     <body>
-        <div id="mainWrapper">
-            <div id="header">
-                <a href="#" class="logo">Doctus</a>
-            </div><!-- END header -->
-            <div id="wrapper">
-                @yield('content')
+
+        <div id="wrapper" class="iframe-container">
+            <div class="header"><h3>Confirmation Page</h3></div>
+            <div class="content">
+                <div class="content-form">
+                    <p>Thank you for your booking, Archie Quito</p>
+                    <p><span class="date">9:00am 3-Jul-2015</span></p>
+                    <p><span class="paid">AUD$ 99.00</span></p>
+                </div>
             </div>
+            <div class="footer">Appointment</div>
         </div>
+
     </body>
+
 </html>

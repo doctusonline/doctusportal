@@ -21,10 +21,12 @@ Route::controllers([
 Route::get('generate','AjaxController@index');
 Route::get('booking','BookingController@index');
 Route::get('bookingtest','BookingController@test');
+Route::get('booking/iframe','BookingController@iframe');
 
 /* Ajax Controller */
 Route::group(array('prefix' => 'api'), function(){
 	Route::post('generate/orders', 'AjaxController@orders');	
 	Route::post('booking/create', 'BookingController@create');	
 	Route::post('payment/create', 'PaymentController@create');	
+	Route::post('checkout','CheckoutController@checkout');
 });

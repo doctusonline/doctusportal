@@ -32,6 +32,11 @@ class BookingController extends Controller {
 	{
 		return view('booking.test');
 	}
+	public function iframe()
+	{
+		return view('booking.iframe');
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.
@@ -42,6 +47,8 @@ class BookingController extends Controller {
 	{	
 		$user = Auth::user();
 		$booking = $booking->create($request->all());
+		$booking->date = date('Y-m-d',strtotime($request->date));
+		$booking->save();
 		$user->bookings()->attach($booking->id);
 		return $request->get('date');
 	}
