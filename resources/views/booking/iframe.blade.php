@@ -42,7 +42,7 @@
             <div class="header"><h3>Confirmation Page</h3></div>
             <div class="content">
                 <div class="content-form">
-                    <p>Thank you for your booking, Archie Quito</p>
+                    <p>Thank you for your booking, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                     <p><span class="date">9:00am 3-Jul-2015</span></p>
                     <p><span class="paid">AUD$ 99.00</span></p>
                 </div>
