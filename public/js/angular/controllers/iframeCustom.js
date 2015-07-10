@@ -22,7 +22,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.optionsContainer = false;
     $scope.height = '260px';
     $scope.width = '100%';
-    $scope.activeTemplate = $sce.trustAsResourceUrl('http://localhost/doctusportal/public/booking/iframe');
+    $scope.activeTemplate = $sce.trustAsResourceUrl('http://portal.doctus.com.au/booking/iframe');
       
     };
 })
