@@ -85,14 +85,6 @@
 		        Request Options
 		    </div>
 		    <div class="fields">
-		        <label for="APIKey">API Key</label>
-		        <input id="APIKey" name="APIKey" type="text" value="60CF3CBMR1yu92sVqK9ofIBTU1AIAddF9P5pLUpncNMAACyWKeFELcGx0z0boJJwfzWRgM" />
-		    </div>
-		    <div class="fields">
-		        <label for="APIPassword">API Password</label>
-		        <input id="APIPassword" name="APIPassword" type="password" value="OvGUoikq"/>
-		    </div>
-		    <div class="fields">
 		        <label for="ddlSandbox">API Sandbox</label>
 		        <select id="ddlSandbox" name="ddlSandbox">
 		        <option value="1" selected="selected">Yes</option>

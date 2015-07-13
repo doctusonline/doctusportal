@@ -22,7 +22,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.optionsContainer = false;
     $scope.height = '260px';
     $scope.width = '100%';
-    $scope.activeTemplate = $sce.trustAsResourceUrl('http://portal.doctus.com.au/booking/iframe');
+    $scope.activeTemplate = $sce.trustAsResourceUrl('booking/iframe');
       
     };
 })
@@ -65,18 +65,26 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     });
   };
 })
-.directive('checkoutClick', function($http) {
+.directive('checkoutClick', function($http, $sce) {
     return function(scope, element) {
       element.bind('click', function() {       
         $('.loading').show(); 
+        $('#checkout-wrapper').addClass('disabled');
         var data = $('#eway-form').serializeArray();
         var json = JSON.stringify(data);
         $http.post('api/checkout',{data:json})
         .success(function(response){
           $('.loading').hide();
-          scope.checkoutContainer = false;
-          scope.thankyouContainer = true;
-          console.log('success');
+          if(response == 'success'){
+            scope.checkoutContainer = false;
+            scope.thankyouContainer = true;
+            console.log(response);
+          }else{
+            scope.message_content = $sce.trustAsHtml(response);
+            $('.message').fadeIn(300).delay(5000).fadeOut(500);
+            $('#checkout-wrapper').removeClass('disabled');
+            console.log(response);
+          }
         })
         .error(function(error){
           alert(error);

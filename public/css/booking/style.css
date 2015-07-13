@@ -546,6 +546,7 @@ img {
 	-webkit-appearance: none;
 }
 
+
 /*** Chikito - Added ***/
 #getHelp ul li a:hover, #getHelp ul li a:focus{
 	text-decoration: none;
@@ -555,7 +556,7 @@ img {
   z-index: 10000; 
 }
 .loading{
-	background-image: url("../../images/ajax-loader.gif");
+	background-image: url("../../images/capsule-loader.gif");
     background-repeat: no-repeat;
     background-size: 50px auto;
     height: 50px;
@@ -564,6 +565,18 @@ img {
     top: 24%;
     width: 50px;
     z-index: 10;
+}
+.message{
+	background-color: #eee;
+    box-shadow: 1px 4px 6px rgb(204, 204, 204);
+    color: red;
+    padding: 20px;
+    position: fixed;
+    text-align: center;
+    top: 30%;
+    width: 410px;
+    z-index: 10;
+    display: none;
 }
 .ng-scope{
 	position: relative;

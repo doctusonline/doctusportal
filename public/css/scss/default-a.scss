@@ -41,3 +41,15 @@
 .transactioncustomer, .hide{
 	display: none;
 }
+
+.message h2{
+	font-size: 16px;
+}
+.message pre{
+	display: none;
+}
+
+.options-wrapper.disabled{
+	pointer-events: none;
+	 opacity: 0.5 !important;
+}

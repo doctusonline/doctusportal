@@ -15,6 +15,9 @@ class CheckoutController extends Controller {
 	 */
 	public function checkout(Request $post)
 	{
+		$api_key = env('EWAY_API_KEY');
+		$api_pass = env('EWAY_API_PASS');
+
 		$in_page = 'before_submit';
 		$json_array = json_decode($post->get('data'));
 		$obj = [];
@@ -60,16 +63,16 @@ class CheckoutController extends Controller {
 
 	    // Populate values for ShippingAddress Object.
 	    // This values can be taken from a Form POST as well. Now is just some dummy data.
-	    $request->ShippingAddress->FirstName = "John";
-	    $request->ShippingAddress->LastName = "Doe";
-	    $request->ShippingAddress->Street1 = "9/10 St Andrew";
-	    $request->ShippingAddress->Street2 = " Square";
-	    $request->ShippingAddress->City = "Edinburgh";
-	    $request->ShippingAddress->State = "";
-	    $request->ShippingAddress->Country = "gb";
-	    $request->ShippingAddress->PostalCode = "EH2 2AF";
-	    $request->ShippingAddress->Email = "your@email.com";
-	    $request->ShippingAddress->Phone = "0131 208 0321";
+	    // $request->ShippingAddress->FirstName = "John";
+	    // $request->ShippingAddress->LastName = "Doe";
+	    // $request->ShippingAddress->Street1 = "9/10 St Andrew";
+	    // $request->ShippingAddress->Street2 = " Square";
+	    // $request->ShippingAddress->City = "Edinburgh";
+	    // $request->ShippingAddress->State = "";
+	    // $request->ShippingAddress->Country = "gb";
+	    // $request->ShippingAddress->PostalCode = "EH2 2AF";
+	    // $request->ShippingAddress->Email = "your@email.com";
+	    // $request->ShippingAddress->Phone = "0131 208 0321";
 	    // ShippingMethod, e.g. "LowCost", "International", "Military". Check the spec for available values.
 	    $request->ShippingAddress->ShippingMethod = "LowCost";
 
@@ -111,7 +114,7 @@ class CheckoutController extends Controller {
 	    if ($data->ddlSandbox) {
 	        $eway_params['sandbox'] = true;
 	    }
-	    $service = new Classes\RapidAPI($data->APIKey, $data->APIPassword, $eway_params);
+	    $service = new Classes\RapidAPI($api_key, $api_pass, $eway_params);
 	    $result = $service->DirectPayment($request);
 
 	    // Check if any error returns
@@ -123,6 +126,7 @@ class CheckoutController extends Controller {
 	            $error = $service->getMessage($error);
 	            $lblError .= $error . "<br />\n";;
 	        }
+	        $in_page = $lblError;
 	    } else {
 
 			$user = Auth::user();
@@ -138,10 +142,10 @@ class CheckoutController extends Controller {
 			    'X-Mailer: PHP/' . phpversion();
 
 			mail($to, $subject, $message, $headers);
-	        $in_page = 'view_result';
+	        $in_page = 'success';
 	    }
 
-		return $in_page;
+		return  $in_page;
 
 	}
 
