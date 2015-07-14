@@ -22,7 +22,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.optionsContainer = false;
     $scope.height = '260px';
     $scope.width = '100%';
-    $scope.activeTemplate = $sce.trustAsResourceUrl('//widget2.appointuit-staging.com/prac_11070');
+    $scope.activeTemplate = $sce.trustAsResourceUrl('booking/iframe');
       
     };
 })
@@ -31,15 +31,8 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     element.bind('click', function() {        
       $('.loading').show();
       // get html on iframe
-
-      var document_html = iframe.contentWindow.parent.document;
-
-      console.log(iframe.contentWindow.document)
-
+      var document_html = iframe.contentWindow.document;
       var inner_html = document_html.getElementsByTagName('span')[0].innerHTML;
-
-
-
       var data = inner_html.split(' ');
       time = data[0];
       date = data[1];
