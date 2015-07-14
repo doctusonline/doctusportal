@@ -151,8 +151,7 @@ class CheckoutController extends Controller {
 
 			// Email to Patient
 			$assignee_doctor = [$to,'support@doctus.com.au'];
-			$data_doctor = ['skype_id'=>'doctus.booking'];
-		    Mail::send('emails.skypepatient', $data_doctor, function($message) use($data_doctor, $assignee_doctor)
+		    Mail::send('emails.skypepatient', $data, function($message) use($data, $assignee_doctor)
 		    {   
 		    	$message->from('no-reply@ideatesystems.com', 'Doctus Appointment - Patient');
 		        $message->to($assignee_doctor)->subject('Call the Doctor');

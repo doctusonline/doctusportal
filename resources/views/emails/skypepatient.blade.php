@@ -1,4 +1,3 @@
-<p>Please download Skype to see your doctor and click link below to attend your booking: <br />
-Visit Dr Rodney Beckwith
-	</p>
-<p><a href="skype:live:{{$skype_id}}?call">Call Doctor {{$skype_id}}</a></p>
+  <p>Thank you for your booking, {{$fullname}}</p>
+<p><span class="date">9:00am 3-Jul-2015</span></p>
+<p><span class="paid">AUD$ 45.00</span></p>
