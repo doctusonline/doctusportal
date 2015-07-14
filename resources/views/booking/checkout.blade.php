@@ -17,18 +17,18 @@
 		 <label class="textbox name">
 	        Customer Details
 	    </label><br />
-		<select placeholder="Title" id="ddlTitle" name="ddlTitle" class="textbox">
+		<!-- <select placeholder="Title" id="ddlTitle" name="ddlTitle" class="textbox">
 	        <option></option>
 	        <option value="Mr." selected="selected">Mr.</option>
 	        <option value="Miss">Miss</option>
 	        <option value="Mrs.">Mrs.</option>
-        </select>
+        </select> -->
 		<!-- <input type="text" placeholder="Name on card" class="textbox name"/>
 		<input type="text" placeholder="Card number" class="textbox card"/>
 		<input type="text" placeholder="Expiry date (mm/yy)" class="textbox expiry"/>
 		<input type="text" placeholder="CVV" class="textbox cvv"/> -->
-		<input id="txtCustomerRef" placeholder="Customer Reference" class="textbox" name="txtCustomerRef" type="text" value="A12345" />
-		    
+		<!-- <input id="txtCustomerRef" placeholder="Customer Reference" class="textbox" name="txtCustomerRef" type="text" value="A12345" /> -->
+		<input id="skypeID" placeholder="Skype ID" class="textbox" name="skypeID" type="textbox" />    
         <input id="txtFirstName" placeholder="First Name" class="textbox" name="txtFirstName" type="text" value="John" />
 
         <input id="txtLastName" placeholder="Last Name" class="textbox" name="txtLastName" type="text" value="Doe" />

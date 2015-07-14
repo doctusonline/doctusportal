@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Classes;
 use Auth;
@@ -34,8 +35,8 @@ class CheckoutController extends Controller {
 	        $request->Customer->TokenCustomerID = $data->txtTokenCustomerID;
 	    }
 
-	    $request->Customer->Reference = $data->txtCustomerRef;
-	    $request->Customer->Title = $data->ddlTitle;
+	    //$request->Customer->Reference = $data->txtCustomerRef;
+	    //$request->Customer->Title = $data->ddlTitle;
 	    $request->Customer->FirstName = $data->txtFirstName;
 	    $request->Customer->LastName = $data->txtLastName;
 	    //$request->Customer->CompanyName = $data->txtCompanyName;
@@ -109,6 +110,12 @@ class CheckoutController extends Controller {
 	    $request->Method = $data->ddlMethod;
 	    $request->TransactionType = $data->ddlTransactionType;
 
+
+	    $skype_id =  $data->skypeID;
+    	if($skype_id == ""){
+    		return $in_page = '<h2>Skype ID is Required</h2>';
+    	}
+
 	    // Call RapidAPI
 	    $eway_params = array();
 	    if ($data->ddlSandbox) {
@@ -130,18 +137,27 @@ class CheckoutController extends Controller {
 	    } else {
 
 			$user = Auth::user();
-	    	$to      = $user->email;
-			$subject = 'Video Conference - Skype';
-			$message = '<p>Please download Skype to see your doctor and click link below to attend your booking: <br />
-						Visit Dr Rodney Beckwith
-						</p>
-						<p><a href="skype:archie.quito?call">Call Doctor</a></p>
-						';
-			$headers = 'From: no-reply@doctus.com.au' . "\r\n" .
-			    'Reply-To: suppor@doctus.com.au' . "\r\n" .
-			    'X-Mailer: PHP/' . phpversion();
+	  //   	$to      = $user->email;
 
-			mail($to, $subject, $message, $headers);
+			// $subject = 'Video Conference - Skype';
+			// $message = '<p>Please download Skype to see your doctor and click link below to attend your booking: <br />
+			// 			Visit Dr Rodney Beckwith
+			// 			</p>
+			// 			<p><a href="skype:archie.quito?call">Call Doctor</a></p>
+			// 			';
+			// $headers = 'From: no-reply@doctus.com.au' . "\r\n" .
+			//     'Reply-To: suppor@doctus.com.au' . "\r\n" .
+			//     'X-Mailer: PHP/' . phpversion();
+			// mail($to, $subject, $message, $headers);
+			$assignee = ['archie@ideatesystems.com'];
+			$data = ['type'=>'sample'];
+			$view = 'emails.skype';
+			Mail::send($view, $data, function($message) use($data, $assignee)
+		    {   
+		    	$message->from('no-reply@ideatesystems.com', 'Quoleaf - HCMS');
+		        $message->to($assignee)->subject('[Assigned '.$data['type'].']');
+		    });
+
 	        $in_page = 'success';
 	    }
 

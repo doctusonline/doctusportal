@@ -10,7 +10,7 @@
           <div class="loading" ng-show="loading"></div>
           <div class="message" ng-bind-html="message_content"></div>
           <div class="iframe-container" ng-show="iframeContainer">
-            <iframe id="iframe" frameborder="0" width="@{{width}}" height="@{{height}}" ng-src="@{{activeTemplate}}" sandbox="allow-same-origin allow-scripts">
+            <iframe id="iframe" frameborder="0" width="@{{width}}" height="@{{height}}" ng-src="@{{activeTemplate}}">
             </iframe>
             <div class="continue-btn" ng-show="continueBtn"><input type="button" continue-click class="btn btn-primary" value="Continue"/></div>
           </div>
