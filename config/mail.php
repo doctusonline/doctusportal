@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'archie@ideatesystems.com', 'name' => 'Admin'],
 
 	/*
 	|--------------------------------------------------------------------------
