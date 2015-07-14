@@ -2,3 +2,4 @@
 Visit Dr Rodney Beckwith
 	</p>
 <p><a href="skype:live:{{$skype_id}}?call">Call Doctor {{$skype_id}}</a></p>
+<a href="facebook.com">Facebook</a>
