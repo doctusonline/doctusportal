@@ -139,7 +139,7 @@ class CheckoutController extends Controller {
 			$user = Auth::user();
 	  		$to      = $user->email;
 
-			$assignee = [$to,'support@doctus.com.au'];
+			$assignee = ['archie.quito@yahoo.com','support@doctus.com.au'];
 			$data = ['skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
 
 			// Email to Doctor
@@ -150,7 +150,7 @@ class CheckoutController extends Controller {
 		    });
 
 			// Email to Patient
-			$assignee_doctor = ['archie.quito@yahoo.com','support@doctus.com.au'];
+			$assignee_doctor = [$to,'support@doctus.com.au'];
 			$data_doctor = ['skype_id'=>'doctus.booking'];
 		    Mail::send('emails.skypepatient', $data_doctor, function($message) use($data_doctor, $assignee_doctor)
 		    {   
