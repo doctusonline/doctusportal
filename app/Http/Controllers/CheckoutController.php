@@ -137,25 +137,15 @@ class CheckoutController extends Controller {
 	    } else {
 
 			$user = Auth::user();
-	  //   	$to      = $user->email;
+	  		$to      = $user->email;
 
-			// $subject = 'Video Conference - Skype';
-			// $message = '<p>Please download Skype to see your doctor and click link below to attend your booking: <br />
-			// 			Visit Dr Rodney Beckwith
-			// 			</p>
-			// 			<p><a href="skype:archie.quito?call">Call Doctor</a></p>
-			// 			';
-			// $headers = 'From: no-reply@doctus.com.au' . "\r\n" .
-			//     'Reply-To: suppor@doctus.com.au' . "\r\n" .
-			//     'X-Mailer: PHP/' . phpversion();
-			// mail($to, $subject, $message, $headers);
-			$assignee = ['archie@ideatesystems.com'];
-			$data = ['type'=>'sample'];
+			$assignee = [$to];
+			$data = ['skype_id'=>$skype_id];
 			$view = 'emails.skype';
 			Mail::send($view, $data, function($message) use($data, $assignee)
 		    {   
-		    	$message->from('no-reply@ideatesystems.com', 'Quoleaf - HCMS');
-		        $message->to($assignee)->subject('[Assigned '.$data['type'].']');
+		    	$message->from('no-reply@ideatesystems.com', 'Skype Call - Doctus');
+		        $message->to($assignee)->subject('Doctus - Skype Call');
 		    });
 
 	        $in_page = 'success';
