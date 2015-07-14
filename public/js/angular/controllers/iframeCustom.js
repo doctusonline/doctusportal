@@ -22,7 +22,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.optionsContainer = false;
     $scope.height = '260px';
     $scope.width = '100%';
-    $scope.activeTemplate = $sce.trustAsResourceUrl('booking/iframe');
+    $scope.activeTemplate = $sce.trustAsResourceUrl('//widget2.appointuit.com/prac_70925');
       
     };
 })
@@ -31,8 +31,15 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     element.bind('click', function() {        
       $('.loading').show();
       // get html on iframe
+
+      
+      //console.log($('#iframe').contents());
+      
       var document_html = iframe.contentWindow.document;
       var inner_html = document_html.getElementsByTagName('span')[0].innerHTML;
+
+
+
       var data = inner_html.split(' ');
       time = data[0];
       date = data[1];
