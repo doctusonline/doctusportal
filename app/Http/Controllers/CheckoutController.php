@@ -140,7 +140,7 @@ class CheckoutController extends Controller {
 	  		$to      = $user->email;
 
 			$assignee = [$to];
-			$data = ['skype_id'=>$skype_id];
+			$data['skype_id'] = $skype_id;
 			$view = 'emails.skype';
 			Mail::send($view, $data, function($message) use($data, $assignee)
 		    {   
