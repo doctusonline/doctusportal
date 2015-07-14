@@ -140,12 +140,22 @@ class CheckoutController extends Controller {
 	  		$to      = $user->email;
 
 			$assignee = [$to,'support@doctus.com.au'];
-			$data = ['skype_id'=>$skype_id];
-			$view = 'emails.skype';
-			Mail::send($view, $data, function($message) use($data, $assignee)
+			$data = ['skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
+
+			// Email to Doctor
+			Mail::send('emails.skypedoctor', $data, function($message) use($data, $assignee)
 		    {   
-		    	$message->from('no-reply@ideatesystems.com', 'Doctus Appointment');
-		        $message->to($assignee)->subject('Doctus Skype Call - Booking');
+		    	$message->from('no-reply@ideatesystems.com', 'Doctus Appointment - Doctor');
+		        $message->to($assignee)->subject('Call the Patient - Booking');
+		    });
+
+			// Email to Patient
+			$assignee_doctor = ['archie.quito@yahoo.com','support@doctus.com.au'];
+			$data_doctor = ['skype_id'=>'doctus.booking'];
+		    Mail::send('emails.skypepatient', $data_doctor, function($message) use($data_doctor, $assignee_doctor)
+		    {   
+		    	$message->from('no-reply@ideatesystems.com', 'Doctus Appointment - Patient');
+		        $message->to($assignee_doctor)->subject('Call the Doctor');
 		    });
 
 	        $in_page = 'success';
