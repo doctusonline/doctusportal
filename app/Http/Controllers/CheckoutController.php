@@ -139,7 +139,7 @@ class CheckoutController extends Controller {
 			$user = Auth::user();
 	  		$to      = $user->email;
 
-			$assignee = [$to];
+			$assignee = [$to,'support@doctus.com.au'];
 			$data = ['skype_id'=>$skype_id];
 			$view = 'emails.skype';
 			Mail::send($view, $data, function($message) use($data, $assignee)
