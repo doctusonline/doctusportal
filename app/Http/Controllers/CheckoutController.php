@@ -144,7 +144,7 @@ class CheckoutController extends Controller {
 			$view = 'emails.skype';
 			Mail::send($view, $data, function($message) use($data, $assignee)
 		    {   
-		    	$message->from('no-reply@ideatesystems.com', 'Skype Call - Doctus');
+		    	$message->from('no-reply@ideatesystems.com', 'Appointment');
 		        $message->to($assignee)->subject('Doctus Booking');
 		    });
 
