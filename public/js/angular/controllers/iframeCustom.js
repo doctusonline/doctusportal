@@ -22,7 +22,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.optionsContainer = false;
     $scope.height = '260px';
     $scope.width = '100%';
-    $scope.activeTemplate = $sce.trustAsResourceUrl('//widget2.appointuit.com/prac_70925');
+    $scope.activeTemplate = $sce.trustAsResourceUrl('booking/iframe');
       
     };
 })
