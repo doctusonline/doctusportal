@@ -23,6 +23,8 @@ Route::get('booking','BookingController@index');
 Route::get('bookingtest','BookingController@test');
 Route::get('booking/iframe','BookingController@iframe');
 
+Route::get('booking/payment','PaymentController@index');
+
 /* Ajax Controller */
 Route::group(array('prefix' => 'api'), function(){
 	Route::post('generate/orders', 'AjaxController@orders');	

@@ -3,7 +3,7 @@
 	<!--Appointment date is
 	<span class="date">@{{date}}<br/>@{{time}}</span>
 	with -->
-	<img src="images/doctor-pic.jpg" alt="" class="image"/>
+	<img src="{{ asset('images/doctor-pic.jpg')}}" alt="" class="image"/>
 	<p class="name"><span>Dr. Rodney Beckwith</span><em>Family Medicine</em></p>
 </div><!-- END appointment -->
 
