@@ -137,35 +137,36 @@ class CheckoutController extends Controller {
 	        }
 	        $in_page = $lblError;
 	    } else {
+	    	$isMail = false;
+	    	if($isMail){
+				$user = Auth::user();
+				$payment_obj = $payment->find($data->paymentID);
+				$booking_obj = $booking->find($data->bookingID);
+				$date = date('d-M-Y', strtotime($booking_obj->date));
+				$time = date('h:i A', strtotime($booking_obj->time));
+		  		$to = $user->email;
+		  		$paid = $payment_obj->paid;
+		  		$user->skype_id = $skype_id;
+		  		$user->save();
+		  		$admin_email = ['support@doctus.com.au','alex@doctus.com.au'];
+				$assignee = 'archie.quito@yahoo.com';
+				$data = ['admin_email'=>$admin_email,'date'=>$date,'time'=>$time,'paid'=>$paid,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
 
-			$user = Auth::user();
-			$payment_obj = $payment->find($data->paymentID);
-			$booking_obj = $booking->find($data->bookingID);
-			$date = date('d-M-Y', strtotime($booking_obj->date));
-			$time = date('h:i A', strtotime($booking_obj->time));
-	  		$to = $user->email;
-	  		$paid = $payment_obj->paid;
-	  		$user->skype_id = $skype_id;
-	  		$user->save();
-	  		$admin_email = ['support@doctus.com.au','alex@doctus.com.au'];
-			$assignee = 'archie.quito@yahoo.com';
-			$data = ['admin_email'=>$admin_email,'date'=>$date,'time'=>$time,'paid'=>$paid,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
+				// Email to Doctor
+				Mail::send('emails.skypedoctor', $data, function($message) use($data, $assignee)
+			    {   
+			    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Doctor');
+			        $message->to($assignee)->cc($data['admin_email'])->subject('Call the Patient - Booking');
+			    });
 
-			// Email to Doctor
-			Mail::send('emails.skypedoctor', $data, function($message) use($data, $assignee)
-		    {   
-		    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Doctor');
-		        $message->to($assignee)->cc($data['admin_email'])->subject('Call the Patient - Booking');
-		    });
-
-			// Email to Patient
-			$assignee_doctor = $to;
-		    Mail::send('emails.skypepatient', $data, function($message) use($data, $assignee_doctor)
-		    {   
-		    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Patient');
-		        $message->to($assignee_doctor)->cc($data['admin_email'])->subject('Thank you for booking');
-		    });
-
+				// Email to Patient
+				$assignee_doctor = $to;
+			    Mail::send('emails.skypepatient', $data, function($message) use($data, $assignee_doctor)
+			    {   
+			    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Patient');
+			        $message->to($assignee_doctor)->cc($data['admin_email'])->subject('Thank you for booking');
+			    });
+			}
 	        $in_page = 'success';
 	    }
 

@@ -12,7 +12,7 @@
           <div class="iframe-container" ng-show="iframeContainer">
             <iframe id="iframe" frameborder="0" width="@{{width}}" height="@{{height}}" ng-src="@{{activeTemplate}}">
             </iframe>
-            <div class="continue-btn" ng-show="continueBtn"><input type="button" continue-click class="btn btn-primary" value="Continue"/></div>
+            <div class="continue-btn" ng-show="continueBtn"><input type="button" continue-click class="btn btn-primary" value="Pay Now"/></div>
           </div>
           <div class="options-wrapper" ng-show="optionsContainer">
              @include('booking.firstpage')

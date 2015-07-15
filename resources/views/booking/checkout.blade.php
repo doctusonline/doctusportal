@@ -1,15 +1,16 @@
 
 <div id="appointment">
-	Appointment date is
+	<!--Appointment date is
 	<span class="date">@{{date}}<br/>@{{time}}</span>
-	with
+	with -->
 	<img src="images/doctor-pic.jpg" alt="" class="image"/>
 	<p class="name"><span>Dr. Rodney Beckwith</span><em>Family Medicine</em></p>
 </div><!-- END appointment -->
 
-<div id="pricing">
+<!--<div id="pricing">
 	<p><span>$@{{paid}}</span>100% Satisfaction Guarenteed</p>
-</div><!-- END pricing -->
+</div>-->
+<!-- END pricing -->
 
 <div id="billing" class="clearfix">
 	<form id="eway-form" method="POST">
