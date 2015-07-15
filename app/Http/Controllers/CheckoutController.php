@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Classes;
 use Auth;
+use App\Booking;
+use App\Payment;
 class CheckoutController extends Controller {
 
 	/**
@@ -14,7 +16,7 @@ class CheckoutController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function checkout(Request $post)
+	public function checkout(Request $post, Booking $booking, Payment $payment)
 	{
 		$api_key = env('EWAY_API_KEY');
 		$api_pass = env('EWAY_API_PASS');
@@ -137,10 +139,15 @@ class CheckoutController extends Controller {
 	    } else {
 
 			$user = Auth::user();
+			$payment_obj = $payment->find($data->paymentID);
+			$booking_obj = $booking->find($data->bookingID);
+			$date = date('d-M-Y', strtotime($booking_obj->date));
+			$time = $booking_obj->time;
 	  		$to      = $user->email;
+	  		$paid = $payment_obj->paid;
 	  		$admin_email = 'support@doctus.com.au';
 			$assignee = 'archie.quito@yahoo.com';
-			$data = ['admin_email'=>$admin_email,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
+			$data = ['admin_email'=>$admin_email,'date'=>$date,'time'=>$time,'paid'=>$paid,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
 
 			// Email to Doctor
 			Mail::send('emails.skypedoctor', $data, function($message) use($data, $assignee)

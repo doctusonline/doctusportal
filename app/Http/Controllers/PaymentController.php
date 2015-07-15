@@ -31,7 +31,7 @@ class PaymentController extends Controller {
 		$payment->date = date('Y-m-d',strtotime($request->date));
 		$payment->save();
 		$user->payments()->attach($payment->id);
-		return $request->get('date');
+		return $payment->id;
 	}
 
 	/**

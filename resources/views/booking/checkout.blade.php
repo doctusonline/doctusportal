@@ -28,6 +28,9 @@
 		<input type="text" placeholder="Expiry date (mm/yy)" class="textbox expiry"/>
 		<input type="text" placeholder="CVV" class="textbox cvv"/> -->
 		<!-- <input id="txtCustomerRef" placeholder="Customer Reference" class="textbox" name="txtCustomerRef" type="text" value="A12345" /> -->
+		<input type="hidden" id="bookingID" name="bookingID" value="@{{bookingID}}" />
+		<input type="hidden" id="paymentID" name="paymentID" value="@{{paymentID}}" />
+
 		<input id="skypeID" placeholder="Skype ID" class="textbox" name="skypeID" type="textbox" />    
         <input id="txtFirstName" placeholder="First Name" class="textbox" name="txtFirstName" type="text" value="John" />
 

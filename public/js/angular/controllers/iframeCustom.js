@@ -53,6 +53,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
         scope.date = getDateString(new Date(objDate), "d M y");
         scope.time = time;
         scope.paid = paid;
+        scope.bookingID = response;
         console.log('success');
       })
       .error(function(error){
@@ -62,6 +63,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
 
       $http.post('api/payment/create',{paid:paid,date:date,time:time})
       .success(function(response){
+        scope.paymentID = response;
         console.log('success');
       })
       .error(function(error){

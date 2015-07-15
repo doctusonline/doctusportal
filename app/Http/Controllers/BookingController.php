@@ -50,7 +50,7 @@ class BookingController extends Controller {
 		$booking->date = date('Y-m-d',strtotime($request->date));
 		$booking->save();
 		$user->bookings()->attach($booking->id);
-		return $request->get('date');
+		return $booking->id;
 	}
 
 
