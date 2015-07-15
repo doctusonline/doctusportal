@@ -1,5 +1,5 @@
 <div id="thankyou">
-	<p class="title"><span>Thank you!</span></p>
+	<!--<p class="title"><span>Thank you!</span></p>-->
 	<div class="desc">
 		<p>You’ve successfully booked your first online doctor’s appointment. Lorem ipsum dolor sit amet, consectetur adipiscing elitn.....</p>
 	</div>

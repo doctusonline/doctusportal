@@ -90,7 +90,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
         var json = JSON.stringify(data);
         $http.post('api/checkout',{data:json})
         .success(function(response){  
-          scope.iframeContainer = false;  
+          //scope.iframeContainer = false;  
           $('.loading').hide();
           if(response == 'success'){
             scope.checkoutContainer = false;
