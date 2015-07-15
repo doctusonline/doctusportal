@@ -140,13 +140,13 @@ class CheckoutController extends Controller {
 	  		$to      = $user->email;
 	  		$admin_email = 'support@doctus.com.au';
 			$assignee = 'archie.quito@yahoo.com';
-			$data = ['skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
+			$data = ['admin_email'=>$admin_email,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
 
 			// Email to Doctor
 			Mail::send('emails.skypedoctor', $data, function($message) use($data, $assignee)
 		    {   
 		    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Doctor');
-		        $message->to($assignee)->cc($admin_email)->subject('Call the Patient - Booking');
+		        $message->to($assignee)->cc($data['admin_email'])->subject('Call the Patient - Booking');
 		    });
 
 			// Email to Patient
@@ -154,7 +154,7 @@ class CheckoutController extends Controller {
 		    Mail::send('emails.skypepatient', $data, function($message) use($data, $assignee_doctor)
 		    {   
 		    	$message->from('no-reply@doctus.com.au', '[Doctus] Booking - Patient');
-		        $message->to($assignee_doctor)->cc($admin_email)->subject('Thank you for booking');
+		        $message->to($assignee_doctor)->cc($data['admin_email'])->subject('Thank you for booking');
 		    });
 
 	        $in_page = 'success';
