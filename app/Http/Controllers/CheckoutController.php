@@ -142,7 +142,7 @@ class CheckoutController extends Controller {
 			$payment_obj = $payment->find($data->paymentID);
 			$booking_obj = $booking->find($data->bookingID);
 			$date = date('d-M-Y', strtotime($booking_obj->date));
-			$time = $booking_obj->time;
+			$time = date('h:i A', strtotime($booking_obj->time));
 	  		$to      = $user->email;
 	  		$paid = $payment_obj->paid;
 	  		$admin_email = ['support@doctus.com.au','alex@doctus.com.au'];
@@ -160,7 +160,7 @@ class CheckoutController extends Controller {
 			$assignee_doctor = $to;
 		    Mail::send('emails.skypepatient', $data, function($message) use($data, $assignee_doctor)
 		    {   
-		    	$message->from('no-reply@doctus.com.au', '[Doctus] Booking - Patient');
+		    	$message->from('no-reply@doctus.com.au', 'Doctus Appointment - Patient');
 		        $message->to($assignee_doctor)->cc($data['admin_email'])->subject('Thank you for booking');
 		    });
 

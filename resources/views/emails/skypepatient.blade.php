@@ -1,3 +1,4 @@
   <p>Thank you for your booking, {{$fullname}}</p>
-<p><span class="date">{{$time}} {{$date}}</span></p>
-<p><span class="paid">AUD$ {{$paid}}</span></p>
+<p><span class="paid">Amount Paid: AUD$ {{$paid}}</span></p>
+<p>Your doctor will call you on your booking time:
+{{$time}} {{$date}}</p>
