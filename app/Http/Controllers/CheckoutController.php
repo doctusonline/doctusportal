@@ -145,7 +145,7 @@ class CheckoutController extends Controller {
 			$time = $booking_obj->time;
 	  		$to      = $user->email;
 	  		$paid = $payment_obj->paid;
-	  		$admin_email = 'support@doctus.com.au';
+	  		$admin_email = ['support@doctus.com.au','alex@doctus.com.au'];
 			$assignee = 'archie.quito@yahoo.com';
 			$data = ['admin_email'=>$admin_email,'date'=>$date,'time'=>$time,'paid'=>$paid,'skype_id'=>$skype_id, 'fullname'=>$user->first_name.' '.$user->last_name];
 
