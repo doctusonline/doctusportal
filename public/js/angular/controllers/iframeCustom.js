@@ -18,7 +18,7 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     $scope.continueBtn = true;
    
     $scope.optionsContainer = false;
-    $scope.height = '400px';
+    $scope.height = '700px';
     $scope.width = '100%';
     $scope.activeTemplate = $sce.trustAsResourceUrl('https://doctus.youcanbook.me/?noframe=true&skipHeaderFooter=true');
      iframe.addEventListener('load', function() {

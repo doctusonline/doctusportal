@@ -33,26 +33,17 @@
 		<input type="hidden" id="paymentID" name="paymentID" value="@{{paymentID}}" />
 
 		<input id="skypeID" placeholder="Skype ID" class="textbox" name="skypeID" type="textbox" />    
-        <input id="txtFirstName" placeholder="First Name" class="textbox" name="txtFirstName" type="text" value="John" />
+        <input id="txtFirstName" placeholder="First Name" class="textbox" name="txtFirstName" type="text"  />
 
-        <input id="txtLastName" placeholder="Last Name" class="textbox" name="txtLastName" type="text" value="Doe" />
-        <label class="textbox name">
-	        Customer Address
-	    </label><br />
-        <input id="txtStreet" placeholder="Street" class="textbox" name="txtStreet" type="text" value="15 Smith St" />
-        <input id="txtCity" placeholder="City" class="textbox" name="txtCity" type="text" value="Phillip" />
-        <input id="txtState" placeholder="State" class="textbox" name="txtState" type="text" value="ACT" />
-    	<input id="txtPostalcode" placeholder="Post Code" class="textbox" name="txtPostalcode" type="text" value="2602" />
-    	<input id="txtCountry" placeholder="Country" class="textbox" name="txtCountry" type="text" value="au" maxlength="2" />
-    	<input id="txtEmail" placeholder="Email" class="textbox" name="txtEmail" type="text" value="" />
-    	<input id="txtMobile" placeholder="Mobile" class="textbox" name="txtMobile" type="text" value="1800 10 10 65" />
-    	<textarea id="txtComments" placeholder="Comments" class="textbox" name="txtComments"/>Some comments here</textarea>
+        <input id="txtLastName" placeholder="Last Name" class="textbox" name="txtLastName" type="text"  />
+    
+    	<textarea id="txtComments" placeholder="Comments" class="textbox" name="txtComments"/></textarea>
     
 	    <label class="card textbox">
 	        Customer Card Details
 	    </label><br />
-	    <input type='text' placeholder="Card Holder" class="textbox" name='txtCardName' id='txtCardName' value="TestUser" />
-	    <input type='text' placeholder="Card Number" class="textbox" name='txtCardNumber' id='txtCardNumber' value="4444333322221111" />
+	    <input type='text' placeholder="Card Holder" class="textbox" name='txtCardName' id='txtCardName'  />
+	    <input type='text' placeholder="Card Number" class="textbox" name='txtCardNumber' id='txtCardNumber' />
 	    <label class="card textbox" for="ddlCardExpiryMonth">
             Expiry Date</label><br />
         <select class="textbox" ID="ddlCardExpiryMonth" name="ddlCardExpiryMonth">
@@ -81,7 +72,7 @@
          <label class="card textbox">
 	        CVN
 	    </label><br />
-	    <input type='text' placeholder="CVN" class="textbox" name='txtCVN' id='txtCVN' value="123" maxlength="4" /> <!-- This field is optional but highly recommended -->
+	    <input type='text' placeholder="CVN" class="textbox" name='txtCVN' id='txtCVN'  maxlength="4" /> <!-- This field is optional but highly recommended -->
 	    
 
 		<div class="transactioncustomer">
@@ -222,9 +213,9 @@
 
 <div id="paymentMethods">
 	<ul>
-		<li><img src="images/visa-card.png" alt=""/></li>
-		<li><img src="images/master-card.png" alt=""/></li>
-		<li><img src="images/e-way.png" alt=""/></li>
+		<li><img src="/images/visa-card.png" alt=""/></li>
+		<li><img src="/images/master-card.png" alt=""/></li>
+		<li><img src="/images/e-way.png" alt=""/></li>
 	</ul>
 </div><!-- END paymentMethods -->
 
