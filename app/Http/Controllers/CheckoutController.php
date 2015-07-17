@@ -121,8 +121,9 @@ class CheckoutController extends Controller {
 	    // Call RapidAPI
 	    $eway_params = array();
 	    if ($data->ddlSandbox) {
-	        $eway_params['sandbox'] = true;
+	        $eway_params['sandbox'] = false;
 	    }
+	    $eway_params['sandbox'] = false;
 	    $service = new Classes\RapidAPI($api_key, $api_pass, $eway_params);
 	    $result = $service->DirectPayment($request);
 
