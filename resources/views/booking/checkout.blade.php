@@ -80,7 +80,7 @@
         </select>
         <br />
          <label class="card textbox">
-	        CVN
+	        CVV
 	    </label><br />
 	    <input type='text' placeholder="CVV" class="textbox" name='txtCVN' id='txtCVN' value="" maxlength="4" /> <!-- This field is optional but highly recommended -->
 	    
