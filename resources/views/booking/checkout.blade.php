@@ -13,7 +13,7 @@
 <!-- END pricing -->
 
 <div id="billing" class="clearfix">
-	<form id="eway-form" method="POST">
+	<form id="eway-form" method="POST" data-eway-encrypt-key="l6W0cVO8OUlbHLOaDzxuMoWlFu7viyIF0sKEAzu8JM551FQQ0v0CAHrvB5DjcQG6zGmnKY2Jm5fPg+OPXNbtdVLhVj64Xn9dyY000dX4JNC4XW+Ty37zWjrdGl/t8E6DRoeeWICBVja2FY4jCgc8NC68vxxjle3fyrPgOnjiX7ORvnvMBNGX8RbAtuWSy78CI8PXBDHhT1qRwreb6Oz16vyOVEB/egSfEye110RjbSrwjuzAP35ohyu0yAy2xrapF0cIMU1blc36jHtfobrZCilQDQO25LuM2aUPutgRWXBSMwlpctGgEv9liJEg7VYuDnRBnGarKWdSS4AdAsF5OQ==">
 		<p class="titlebar">Enter credit card details</p>
 		 <label class="textbox name">
 	        Customer Details
@@ -53,7 +53,7 @@
 	        Customer Card Details
 	    </label><br />
 	    <input type='text' placeholder="Card Holder" class="textbox" name='txtCardName' id='txtCardName' value="" />
-	    <input type='text' placeholder="Card Number" class="textbox" name='txtCardNumber' id='txtCardNumber' value="" />
+	    <input type='text' data-eway-encrypt-name="EWAY_CARDNUMBER" placeholder="Card Number" class="textbox" name='txtCardNumber' id='txtCardNumber' value="" />
 	    <label class="card textbox" for="ddlCardExpiryMonth">
             Expiry Date</label><br />
         <select class="textbox" ID="ddlCardExpiryMonth" name="ddlCardExpiryMonth">
@@ -82,7 +82,7 @@
          <label class="card textbox">
 	        CVV
 	    </label><br />
-	    <input type='text' placeholder="CVV" class="textbox" name='txtCVN' id='txtCVN' value="" maxlength="4" /> <!-- This field is optional but highly recommended -->
+	    <input type='text' data-eway-encrypt-name="EWAY_CARDCVN" placeholder="CVV" class="textbox" name='txtCVN' id='txtCVN' value="" maxlength="4" /> <!-- This field is optional but highly recommended -->
 	    
 
 		<div class="transactioncustomer">
@@ -217,6 +217,7 @@
 		    </div>
 		</div>
 	</form>
+	<script src="https://secure.ewaypayments.com/scripts/eCrypt.js"></script>
 </div><!-- END billing -->
 
 <input type="button" checkout-click value="Checkout" class="redBtn"/>
