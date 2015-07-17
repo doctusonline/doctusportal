@@ -56,13 +56,13 @@ class CheckoutController extends Controller {
 	    //$request->Customer->Url = $data->txtUrl;
 
 	    $request->Customer->CardDetails->Name = $data->txtCardName;
-	    $request->Customer->CardDetails->Number = $data->txtCardNumber;
+	    $request->Customer->CardDetails->Number = $post->get('cardNumber');
 	    $request->Customer->CardDetails->ExpiryMonth = $data->ddlCardExpiryMonth;
 	    $request->Customer->CardDetails->ExpiryYear = $data->ddlCardExpiryYear;
 	    //$request->Customer->CardDetails->StartMonth = $data->ddlStartMonth;
 	    $request->Customer->CardDetails->StartYear = $data->ddlStartYear;
 	    //$request->Customer->CardDetails->IssueNumber = $data->txtIssueNumber;
-	    $request->Customer->CardDetails->CVN = $data->txtCVN;
+	    $request->Customer->CardDetails->CVN = $post->get('cvv');
 
 	    // Populate values for ShippingAddress Object.
 	    // This values can be taken from a Form POST as well. Now is just some dummy data.
@@ -123,7 +123,6 @@ class CheckoutController extends Controller {
 	    if ($data->ddlSandbox) {
 	        $eway_params['sandbox'] = false;
 	    }
-	    $eway_params['sandbox'] = false;
 	    $service = new Classes\RapidAPI($api_key, $api_pass, $eway_params);
 	    $result = $service->DirectPayment($request);
 

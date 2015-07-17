@@ -26,10 +26,14 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
     return function(scope, element) {
       element.bind('click', function() {   
         scope.loading = true;
+        var cardNumber = eCrypt.encryptValue($('#txtCardNumber').val());
+        var cvv = eCrypt.encryptValue($('#txtCVN').val());
+
         $('#checkout-wrapper').addClass('disabled');
         var data = $('#eway-form').serializeArray();
         var json = JSON.stringify(data);
-        $http.post('../../api/checkout',{data:json})
+        console.log('formdata='+json)
+        $http.post('../api/checkout',{data:json,cardNumber:cardNumber,cvv:cvv})
         .success(function(response){  
           //scope.iframeContainer = false;  
           $('.loading').hide();
