@@ -223,9 +223,9 @@
 
 <div id="paymentMethods">
 	<ul>
-		<li><img src="/images/visa-card.png" alt=""/></li>
-		<li><img src="/images/master-card.png" alt=""/></li>
-		<li><img src="/images/e-way.png" alt=""/></li>
+		<li><img src="{{ asset('images/visa-card.png') }}" alt=""/></li>
+		<li><img src="{{ asset('images/master-card.png') }}" alt=""/></li>
+		<li><img src="{{ asset('images/e-way.png') }}" alt=""/></li>
 	</ul>
 </div><!-- END paymentMethods -->
 
