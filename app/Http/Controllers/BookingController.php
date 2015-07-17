@@ -16,7 +16,7 @@ class BookingController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+		//$this->middleware('auth');
 	}
 
 	/**
@@ -45,11 +45,11 @@ class BookingController extends Controller {
 	 */
 	public function create(BookingRequest $request, Booking $booking)
 	{	
-		$user = Auth::user();
+		//$user = Auth::user();
 		$booking = $booking->create($request->all());
 		$booking->date = date('Y-m-d',strtotime($request->date));
 		$booking->save();
-		$user->bookings()->attach($booking->id);
+		//$user->bookings()->attach($booking->id);
 		return $booking->id;
 	}
 

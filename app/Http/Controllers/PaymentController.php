@@ -26,11 +26,11 @@ class PaymentController extends Controller {
 	 */
 	public function create(PaymentRequest $request, Payment $payment)
 	{	
-		$user = Auth::user();
+		//$user = Auth::user();
 		$payment = $payment->create($request->all());
 		$payment->date = date('Y-m-d',strtotime($request->date));
 		$payment->save();
-		$user->payments()->attach($payment->id);
+		//$user->payments()->attach($payment->id);
 		return $payment->id;
 	}
 
