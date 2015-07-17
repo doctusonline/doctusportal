@@ -17,5 +17,5 @@
  </div><!-- END rating -->
  
  <div id="satisfication">
-    <p>100% Satisfaction Guarenteed<span>*Prices very for psychatrc consults</span></p>
+    <p>100% Satisfaction Guaranteed</p>
  </div><!-- END satisfication -->
