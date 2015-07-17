@@ -15,7 +15,6 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
   $scope.loadTemplate = function() {
 
     $scope.iframeContainer = true;
-    $scope.loading = true;
     $scope.continueBtn = true;
     $scope.checkoutContainer = true;
     $scope.optionsContainer = false;
@@ -26,11 +25,11 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
 .directive('checkoutClick', function($http, $sce) {
     return function(scope, element) {
       element.bind('click', function() {   
-        $('.loading').show(); 
+        scope.loading = true;
         $('#checkout-wrapper').addClass('disabled');
         var data = $('#eway-form').serializeArray();
         var json = JSON.stringify(data);
-        $http.post('../api/checkout',{data:json})
+        $http.post('../../api/checkout',{data:json})
         .success(function(response){  
           //scope.iframeContainer = false;  
           $('.loading').hide();
@@ -46,7 +45,9 @@ app.controller('MainCtrl', function($scope, $sce, $http) {
           }
         })
         .error(function(error){
-          alert(error);
+          scope.message_content = $sce.trustAsHtml('Error to checkout');
+            $('.message').fadeIn(300).delay(5000).fadeOut(500);
+            setTimeout(6000,$('#checkout-wrapper').removeClass('disabled'));
           console.log('error');
         });
       });

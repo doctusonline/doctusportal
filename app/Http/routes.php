@@ -24,6 +24,7 @@ Route::get('bookingtest','BookingController@test');
 Route::get('booking/iframe','BookingController@iframe');
 
 Route::get('booking/payment','PaymentController@index');
+Route::get('booking/payment/{reference}','PaymentController@index');
 
 /* Ajax Controller */
 Route::group(array('prefix' => 'api'), function(){

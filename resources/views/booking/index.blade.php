@@ -17,9 +17,9 @@
           <div class="options-wrapper" ng-show="optionsContainer">
              @include('booking.firstpage')
           </div>
-          <div id="checkout-wrapper" class="options-wrapper" ng-show="checkoutContainer">
-             @include('booking.checkout')
-          </div>
+          <!-- <div id="checkout-wrapper" class="options-wrapper" ng-show="checkoutContainer">
+             
+          </div> -->
           <div class="options-wrapper" ng-show="thankyouContainer">
              @include('booking.thankyou')
           </div>

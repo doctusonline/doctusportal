@@ -43,11 +43,11 @@ class CheckoutController extends Controller {
 	    $request->Customer->LastName = $data->txtLastName;
 	    //$request->Customer->CompanyName = $data->txtCompanyName;
 	    //$request->Customer->JobDescription = $data->txtJobDescription;
-	    $request->Customer->Street1 = $data->txtStreet;
-	    $request->Customer->City = $data->txtCity;
-	    $request->Customer->State = $data->txtState;
-	    $request->Customer->PostalCode = $data->txtPostalcode;
-	    $request->Customer->Country = $data->txtCountry;
+	    // $request->Customer->Street1 = $data->txtStreet;
+	    // $request->Customer->City = $data->txtCity;
+	    // $request->Customer->State = $data->txtState;
+	    // $request->Customer->PostalCode = $data->txtPostalcode;
+	    // $request->Customer->Country = $data->txtCountry;
 	    $request->Customer->Email = $data->txtEmail;
 	    //$request->Customer->Phone = $data->txtPhone;
 	    $request->Customer->Mobile = $data->txtMobile;
@@ -113,10 +113,10 @@ class CheckoutController extends Controller {
 	    $request->TransactionType = $data->ddlTransactionType;
 
 
-	    $skype_id =  $data->skypeID;
-    	if($skype_id == ""){
-    		return $in_page = '<h2>Skype ID is Required</h2>';
-    	}
+	   // $skype_id =  $data->skypeID;
+    	//if($skype_id == ""){
+    	//	return $in_page = '<h2>Skype ID is Required</h2>';
+    	//}
 
 	    // Call RapidAPI
 	    $eway_params = array();
@@ -138,6 +138,10 @@ class CheckoutController extends Controller {
 	        $in_page = $lblError;
 	    } else {
 	    	$isMail = false;
+
+	    	$payment->reference = $data->reference;
+	    	$payment->save();
+
 	    	if($isMail){
 				$user = Auth::user();
 				$payment_obj = $payment->find($data->paymentID);

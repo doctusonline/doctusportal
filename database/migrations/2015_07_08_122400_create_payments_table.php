@@ -16,6 +16,7 @@ class CreatePaymentsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->unsignedInteger('paid');
+			$table->string('reference');
 			$table->date('date');
 			$table->time('time');
 			$table->timestamps();

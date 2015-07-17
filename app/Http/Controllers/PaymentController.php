@@ -14,10 +14,9 @@ class PaymentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($reference)
 	{
-		//
-		return view('booking.payment');
+		return view('booking.payment', compact('reference'));
 	}
 
 	/**
