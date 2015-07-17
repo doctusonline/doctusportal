@@ -1,8 +1,8 @@
 <div id="getHelp">
     <p class="titlebar">Get help from real doctors 24/7<span>Choose one:</span></p>
     <ul>
-        <li class="skype"><a href="javascript:void(0)" ng-click="loadTemplate()"><span class="title">SKYPE CALL</span>Consult your doctor specialist<span class="cost">Cost: $45</span><span class="arrow">&gt;</span></a></li>
-        <li class="questionnaire"><a target="_blank" href="https://doctus.com.au/medications/"><span class="title">QUESTIONNAIRE</span>Consult <strong>immediately</strong><span class="cost">Cost: $35</span><span class="arrow">&gt;</span></a></li>
+        <li class="skype"><a href="javascript:void(0)" ng-click="loadTemplate()"><span class="title">SKYPE CALL</span>Skype GP Consultation<span class="cost">Cost: $75</span><span class="arrow">&gt;</span></a></li>
+        <li class="questionnaire"><a target="_blank" href="https://doctus.com.au/medications/"><span class="title">QUESTIONNAIRE</span>Prescription Consult <strong>immediately</strong><span class="cost">Cost: $35</span><span class="arrow">&gt;</span></a></li>
     </ul>
  </div><!-- END getHelp -->
  
@@ -12,7 +12,7 @@
         <span class="name">Dr. Rodney Beckwith</span>
         <span class="type">Family Medicine</span>
         <p class="stars"><span></span><span></span><span></span><span></span><span></span></p>
-        <span class="location">Reliance GP Super</span>
+        <span class="location">Reliance GP SuperClinic</span>
     </div>
  </div><!-- END rating -->
  
