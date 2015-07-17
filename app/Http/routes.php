@@ -11,25 +11,26 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-Route::get('home', 'HomeController@index');
+//Route::get('/', 'WelcomeController@index');
+//Route::get('home', 'HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
 Route::get('generate','AjaxController@index');
-Route::get('booking','BookingController@index');
+Route::get('/','BookingController@index');
+Route::get('home', 'BookingController@index');
 Route::get('bookingtest','BookingController@test');
-Route::get('booking/iframe','BookingController@iframe');
+Route::get('iframe','BookingController@iframe');
 
-Route::get('booking/payment','PaymentController@index');
-Route::get('booking/payment/{reference}','PaymentController@index');
+Route::get('payment','PaymentController@index');
+Route::get('payment/{reference}','PaymentController@index');
 
 /* Ajax Controller */
 Route::group(array('prefix' => 'api'), function(){
 	Route::post('generate/orders', 'AjaxController@orders');	
-	Route::post('booking/create', 'BookingController@create');	
+	Route::post('create', 'BookingController@create');	
 	Route::post('payment/create', 'PaymentController@create');	
 	Route::post('checkout','CheckoutController@checkout');
 });
