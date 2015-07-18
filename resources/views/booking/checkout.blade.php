@@ -122,7 +122,7 @@
 		    </div>
 		    <div class="fields">
 		        <label for="txtAmount">Amount &nbsp;<img src="../assets/Images/question.gif" alt="Find out more" id="amountTipOpener" border="0" /></label>
-		        <input id="txtAmount" name="txtAmount" type="text" value="75" />
+		        <input id="txtAmount" name="txtAmount" type="text" value="7500" />
 		    </div>
 		    <div class="fields">
 		        <label for="txtCurrencyCode">Currency Code </label>
