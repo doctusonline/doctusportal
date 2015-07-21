@@ -55,7 +55,21 @@
 	pointer-events: none;
 	 opacity: 0.5 !important;
 }
+.loading{
+	background-image: url("../../images/capsule-loader.gif");
+    background-repeat: no-repeat;
+    background-size: 50px auto;
+    height: 50px;
+    left: 48%;
+    position: fixed;
+    top: 24%;
+    width: 50px;
+    z-index: 10;
+}
 
+.table a{
+	cursor: pointer;
+}
 
 @media (max-width: 450px){
 	.message{

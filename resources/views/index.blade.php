@@ -68,7 +68,7 @@
     var app = angular.module('doctusApp',[]);
     
     app.controller('ordersCtrl', function($scope, $http){
-        $http.get('http://52.64.118.158/mage-api/orders-json.php?range=week&status=processing')
+        $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
         .success(function(response){
             $scope.orders = response;
         })

@@ -11,14 +11,15 @@
 |
 */
 
-//Route::get('/', 'WelcomeController@index');
-//Route::get('home', 'HomeController@index');
+Route::get('dashboard', 'WelcomeController@index');
+Route::get('homepage', 'HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
 Route::get('generate','AjaxController@index');
+
 Route::get('/','BookingController@index');
 Route::get('home', 'BookingController@index');
 Route::get('bookingtest','BookingController@test');

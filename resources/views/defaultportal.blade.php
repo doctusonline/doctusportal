@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     
-        <link rel="icon" type="image/png" href="https://doctus.com.au/skin/frontend/default/doctus_theme/doctus-favicon.png">     
-        
+    <link rel="icon" type="image/png" href="https://doctus.com.au/skin/frontend/default/doctus_theme/doctus-favicon.png">     
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,31 +20,29 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
-    
-    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datetimepicker.4.7.14.css') }} ">   -->
-    <!-- laravel Styles -->
-    <link rel="stylesheet" href="{{ asset('css/scss/default-k.css') }} ">  
-    <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} "> 
-    
-    <style>
-        .dp-main-content { padding:30px 0; }
-    </style>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-resource.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
         
-    <!-- Scripts -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datetimepicker.4.7.14.css') }} ">   -->
+        <!-- laravel Styles -->
+        <link rel="stylesheet" href="{{ asset('css/scss/default-k.css') }} ">  
+        <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} "> 
+        
+        <style>
+            .dp-main-content { padding:30px 0; }
+        </style>
+        
+      <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+
 
 </head>
 
 <body>
     
-    <div id="main-wrapper" ng-app="doctusApp">
+    <div id="main-wrapper">
 
     <div class="main-content cms-page-custom"> <!-- CMS Page Content -->
 
@@ -114,12 +111,7 @@
                     </div> 
                     <div class="right col-md-9">
                         
-<!--                        <ul class="nav navbar-nav">
-                            <li class=""> <a href="#">MEDICATIONS</a> </li> 
-                                <li class=""> <a href="#">OUR SERVICES</a> </li>
-                                <li class=""> <a href="#">ABOUT</a> </li>
-                        </ul>-->
-                        
+                       
                     </div>
                     <div class="clear"> </div>
                 </div> <!--/logo -->
@@ -129,36 +121,18 @@
             <section class="page-nav-title">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6"><h1>Doctor's Portal </h1></div>
+                        <div class="col-md-6 col-sm-6"><h1>@yield('headtitle')</h1></div>
                         <div class="col-md-6 col-sm-6">
-                            <!--<div class="row">
-                                    <div class="col-md-5 col-sm-5 center" style="float:right">
-                                        <img src="https://doctus.com.au/skin/frontend/default/doctus_theme/images/flag-1.png"/><br />
-                                        <span class="pharma">Australian Owned &amp; Operated</span>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 center" style="float:right">
-                                        <img src="https://doctus.com.au/skin/frontend/default/doctus_theme/images/pharmacy-online.png" /><br />
-                                        <span class="pharma">Medicines Provided by <br />Pharmacy Online</span>
-                                    </div>
-                                </div> -->
                         </div>
                     </div>
                 </div>
             </section>
             
     </div> <!-- / CMS Page Content -->
-
-
     <div id="main-container" class="container"> <!-- Main Content -->
            <div class="row">
-                
-                        
-                    @yield('content')
-                    
-                    
-                
+                @yield('content')                    
            </div>
-
     </div> <!-- / Main Content -->
 
     <section class="footer">
@@ -184,43 +158,6 @@
     </div> <!-- /Main Wrapper -->
     
     
-<!--	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Doctor's Portal</a>
-			</div>
 
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					@if (Auth::guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
-					@else
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-							</ul>
-						</li>
-					@endif
-				</ul>
-			</div>
-		</div>
-	</nav>-->
-
-
-    <!-- doctus custom js -->
-    <script type="text/javascript" src="https://doctus.com.au/skin/frontend/default/doctus_theme/js/doctus-custom.js"> </script>        
-        
 </body>
 </html>
