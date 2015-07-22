@@ -1,23 +1,39 @@
-
-initApp.$inject = ['$scope', '$filter', '$http'];
+var app = angular.module('orderApp', ['ui.bootstrap']);
 
 var sortingOrder = 'name'; //default sort
 
-function initApp($scope, $filter, $http) {
- $scope.loading = true;
+app.controller('initApp', function($scope, $filter, $http) {
+
+	$scope.isCollapsed = true;
+	$scope.loading = true;
 
 
-  var searchMatch = function (haystack, needle) {
-    if (!needle) {
-      return true;
-    }
-    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-  };
-  
-
-$http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
+ $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
     .success(function(response){        
 		  // init
+
+		  var collections = function(data) {
+		      var output = [], 
+		          keys = [];
+
+		      angular.forEach(data, function(item) {
+		          var key = item['id'];
+		          if(keys.indexOf(key) === -1) {
+		              keys.push(key);
+		              output.push(item);
+		          }
+		      });
+		      return output;
+		   };
+
+		   var searchMatch = function (haystack, needle) {
+			    if (!needle) {
+			      return true;
+			    }
+			    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
+			  };
+  
+
 		  $scope.sortingOrder = sortingOrder;
 		  $scope.pageSizes = [5,10,25,50];
 		  $scope.reverse = false;
@@ -26,26 +42,29 @@ $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=proc
 		  $scope.itemsPerPage = 10;
 		  $scope.pagedItems = [];
 		  $scope.currentPage = 0;
-		  $scope.items = response;
+		  $scope.allItems = response;
+		  $scope.items = collections(response);
 
 		  $scope.statusOptions = [
-		      {id:'pending', name:'Pending'},
-		      {id:'processing', name:'Processing'},
-		      {id:'waiting', name:'Waiting to confirm'}
+		      {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
+		      {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
+		      {id:'manually_processed', name:'Manually Processing'},
+		      {id:'prescription_approved', name:'Prescription Approved'},
+		      {id:'prescription_denied', name:'Prescription Denied'},
+		      {id:'prescription_only_approved', name:'Prescription Only Approved'}
+		     
 		    ];
 		  $scope.repeatOptions = [
 		  	{id:1, name:1}, {id:2, name:2}, {id:3, name:3}, {id:4, name:4}, {id:5, name:5}, {id:6, name:6},
 		      {id:7, name:7}, {id:8, name:8}, {id:9, name:9}, {id:10, name:10}
 		  ];
 
-
-
-
 		  // init the filtered items
 		  $scope.search = function () {
 		    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+
 		      for(var attr in item) {
-		        if (searchMatch(item[attr], $scope.query))
+		        if (searchMatch(item['id'], $scope.query))
 		          return true;
 		      }
 		      return false;
@@ -77,14 +96,14 @@ $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=proc
 		    }
 		  };
 		  
-		   $scope.deleteItem = function (idx) {
-		        var itemToDelete = $scope.pagedItems[$scope.currentPage][idx];
-		        var idxInItems = $scope.items.indexOf(itemToDelete);
-		        $scope.items.splice(idxInItems,1);
-		        $scope.search();
+		   // $scope.deleteItem = function (idx) {
+		   //      var itemToDelete = $scope.pagedItems[$scope.currentPage][idx];
+		   //      var idxInItems = $scope.items.indexOf(itemToDelete);
+		   //      $scope.items.splice(idxInItems,1);
+		   //      $scope.search();
 		        
-		        return false;
-		    };
+		   //      return false;
+		   //  };
 		  
 		    $scope.changeStatus = function(status){
 		    	$http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
@@ -141,4 +160,13 @@ $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=proc
 		  };
 		  $scope.loading = false;
     });
-};
+
+
+});
+//initApp.$inject = ['$scope', '$filter', '$http'];
+
+
+
+// function initApp($scope, $filter, $http) {
+ 
+// };

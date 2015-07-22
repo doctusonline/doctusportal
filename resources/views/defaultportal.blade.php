@@ -20,24 +20,24 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
-        
-        <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datetimepicker.4.7.14.css') }} ">   -->
-        <!-- laravel Styles -->
-        <link rel="stylesheet" href="{{ asset('css/scss/default-k.css') }} ">  
-        <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} "> 
-        
-        <style>
-            .dp-main-content { padding:30px 0; }
-        </style>
-        
-      <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
-
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://doctus.com.au/skin/frontend/default/doctus_theme/css/style.css">        
+    
+    <!-- <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap-datetimepicker.4.7.14.css') }} ">   -->
+    <!-- laravel Styles -->
+    <link rel="stylesheet" href="{{ asset('css/scss/default-k.css') }} ">  
+    <link rel="stylesheet" href="{{ asset('css/scss/default-a.css') }} "> 
+    
+    <style>
+        .dp-main-content { padding:30px 0; }
+    </style>
+    
+    <script type='text/javascript' src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/angular/angular.min.js') }}"></script>
+    <script data-require="angular-bootstrap@0.12.0" data-semver="0.12.0" src="{{ asset('js/angular/ui-bootstrap-tpls-0.12.0.min.js') }}"></script>
+ 
 </head>
 
 <body>

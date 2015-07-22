@@ -5,19 +5,17 @@
 @endsection
 
 @section('content')
-
-        <hr>
-<div class="container" ng-app="">
+<div class="container" ng-app="orderApp">
   <div ng-controller="initApp">
   	<div class="loading" ng-show="loading"></div>
     <div class="row">
       <div class="col-md-3">
-        <!-- <div class="input-group input-group-lg add-on">
-          <input type="text" class="form-control search-query" ng-model="query" ng-change="search()" placeholder="Search">
+        <div class="input-group  add-on">
+          <input type="text" class="form-control search-query" ng-model="query" ng-change="search()" placeholder="Search Order ID">
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
-        </div> -->
+        </div>
 			<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 			<div class="modal-content">
@@ -45,11 +43,12 @@
     </div>    
     <table class="table table-striped table-hover">
       <tbody><tr>
-        <th class="id"><a ng-click="sort_by('id')">Id <i class="fa fa-sort"></i></a></th>
-        <th class="sku"><a ng-click="sort_by('sku')">SKU <i class="fa fa-sort"></i></a></th>
-        <th class="name"><a ng-click="sort_by('name')">Name <i class="fa fa-sort"></i></a></th>
+        <th class="productid"><a ng-click="sort_by('productid')">Product ID<i class="fa fa-sort"></i></a></th>
+        <th class="id"><a ng-click="sort_by('id')">Order ID<i class="fa fa-sort"></i></a></th>
+        <!-- <th class="sku"><a ng-click="sort_by('sku')">SKU <i class="fa fa-sort"></i></a></th> -->
+        <!-- <th class="name"><a ng-click="sort_by('name')">Product Name<i class="fa fa-sort"></i></a></th>  -->      
+        <th class="product"><a ng-click="sort_by('product')">Customer Name<i class="fa fa-sort"></i></a></th>
         <th class="description" title="non-sortable">Status</th>
-        <th class="repeats">Repeats</th>
         <!-- <th></th> -->
       </tr>
       </tbody>
@@ -71,22 +70,66 @@
         </td>
       </tr></tfoot>
       <tbody>
-        <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+        <tr ng-click="isCollapsed = !isCollapsed" ng-repeat-start="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
+          <td>@{{item.productid}}</td>
           <td>@{{item.id}}</td>
-          <td>@{{item.sku}}</td>
-          <td><a href="#myModal" role="button" class="" data-toggle="modal">@{{item.name}}</a></td>
+          <!-- <td>@{{item.sku}}</td> -->
+          <!-- <td ng-click="isCollapsed = !isCollapsed" >@{{item.product}}</td> -->
+          <!-- <td ng-click="isCollapsed = !isCollapsed" ><a href="#myModal" role="button" class="" data-toggle="modal">@{{item.name}}</a></td> -->
+          <td>@{{item.name}}</td>
           <td>
-          	<select class="form-control" ng-options="o.id as o.name for o in statusOptions track by o.name" ng-model="status" ng-change="changeStatus(status)">
-          		
-          	</select>
-          </td>
-          <td>
-          	<select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat)">
-          		
-          	</select>
+          	@{{item.status}}
           </td>
           <!-- <td><a href="javascript:void(0)" ng-click="deleteItem($index)">x</a></td> -->
         </tr>
+        <tr class="" collapse="isCollapsed" ng-repeat-end="">
+	        <td colspan="6">
+	        	<div class="row">
+	        		<div class="col-md-5">
+	        			<h5>Order # @{{item.id}}</h5>
+	        			<p>Order Status: @{{item.status}}</p>
+	        		</div>
+			        <div class="col-md-5">
+			          <h5>Account Information</h5>	
+			          <fieldset>
+			          	<span>Customer Name: </span><label>@{{item.name}}</label>
+			          </fieldset>	  
+			          <fieldset>
+			          	<span>Email: </span><label>@{{item.email}}</label>
+			          </fieldset>	      	
+			        </div>
+			        <div class="col-md-2 select-status">
+			        	Status: 
+			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(status)">
+			          	</select>
+			        </div>
+	        	</div>
+	        	<div class="row">
+			        <div class="col-md-12">
+			          <h5>Items Ordered</h5>
+			          <div ng-repeat="p in allItems | filter:item.id">
+			          	<div class="type_@{{p.type}}">
+				          	<fieldset>
+				          		<div class="col-md-6"><h4><u>@{{p.product}}</u></h4>
+				          			<label>SKU: </label><span>@{{p.sku}}</span>
+				          		</div>
+					          	<div class="col-md-2 pull-right" ng-if="p.type == 'simple'">Repeats: <select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat)">
+					          	</select></div>
+				          	</fieldset>
+					        <fieldset ng-if="p.options">
+					        	<div class="prescription_content">
+					        		<fieldset ng-repeat="option in p.options">
+					        			<label><i>@{{option.label}}</i></label>
+					        			<div class="option-value">- @{{option.value}} </div>
+					        		</fieldset>
+					        	</div>
+					        </fieldset>
+				        </div>
+			          </div>
+			        </div>
+		        </div>
+	        </td>
+	      </tr>
       </tbody>
     </table>
   </div>
