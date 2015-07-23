@@ -19,7 +19,7 @@
 		"psr-4": {
 			"App\\": "app/"
 		},
-		"files": ["app/Classes/RapidAPI.php"]
+		"files": ["app/Classes/RapidAPI.php", "app/Classes/fpdf.php"]
 	},
 	"autoload-dev": {
 		"classmap": [

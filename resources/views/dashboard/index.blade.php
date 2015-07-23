@@ -7,7 +7,7 @@
 @section('content')
 <div class="container" ng-app="orderApp">
   <div ng-controller="initApp">
-  	<div class="loading" ng-show="loading"></div>
+  	<div class="loading"></div>
     <div class="row">
       <div class="col-md-3">
         <div class="input-group  add-on">
@@ -34,8 +34,12 @@
 			</div>
 			</div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
       	<h4 class="text-center">Order List</h4>
+      </div>
+      <div class="col-md-3">
+        <select  class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="selectedStatus" ng-change="filterStatus(selectedStatus)">
+		</select>
       </div>
       <div class="col-md-3">
         <select class="form-control pull-right" ng-model="itemsPerPage" ng-change="perPage()" ng-options="('show '+size+' per page') for size in pageSizes"></select>
@@ -49,7 +53,7 @@
         <!-- <th class="name"><a ng-click="sort_by('name')">Product Name<i class="fa fa-sort"></i></a></th>  -->      
         <th class="product"><a ng-click="sort_by('product')">Customer Name<i class="fa fa-sort"></i></a></th>
         <th class="description" title="non-sortable">Status</th>
-        <!-- <th></th> -->
+        <th></th>
       </tr>
       </tbody>
       <tfoot>
@@ -80,6 +84,12 @@
           <td>
           	@{{item.status}}
           </td>
+          <td>
+          	<div ng-if="item.status == 'prescription_approved'">
+	          	<a href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary">Download PDF</a>
+	          	<input type="button" class="btn btn-primary" value="Print"/>
+          	</div>
+          </td>
           <!-- <td><a href="javascript:void(0)" ng-click="deleteItem($index)">x</a></td> -->
         </tr>
         <tr class="" collapse="isCollapsed" ng-repeat-end="">
@@ -100,8 +110,9 @@
 			        </div>
 			        <div class="col-md-2 select-status">
 			        	Status: 
-			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(status)">
+			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(item.id, status)">
 			          	</select>
+
 			        </div>
 	        	</div>
 	        	<div class="row">

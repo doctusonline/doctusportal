@@ -28,9 +28,15 @@ Route::get('iframe','BookingController@iframe');
 Route::get('payment','PaymentController@index');
 Route::get('payment/{reference}','PaymentController@index');
 
-/* Ajax Controller */
-Route::group(array('prefix' => 'api'), function(){
-	Route::post('generate/orders', 'AjaxController@orders');	
+/* AJAX Controller */
+Route::group(array('prefix' => 'ajax'), function(){
+	Route::post('generate/orders', 'AjaxController@orders');
+	Route::post('generate/pdf', 'AjaxController@generatePDF');
+	Route::get('generate/pdf', 'AjaxController@generatePDF');
+});
+
+/* API Controller */
+Route::group(array('prefix' => 'api'), function(){	
 	Route::post('create', 'BookingController@create');	
 	Route::post('payment/create', 'PaymentController@create');	
 	Route::post('checkout','CheckoutController@checkout');

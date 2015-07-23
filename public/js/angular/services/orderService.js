@@ -18,7 +18,7 @@ return $resource('http://52.64.118.158/mage-api/orders-json.php?range=week&statu
                 x.appendChild(t);
                 document.getElementById("message-log").appendChild(x);
             });
-            $http.post('api/generate/orders',{range:range,data:data})
+            $http.post('ajax/generate/orders',{range:range,data:data})
             .success(function(response){
                 $rootScope.loading = false;
             })

@@ -5,10 +5,17 @@ var sortingOrder = 'name'; //default sort
 app.controller('initApp', function($scope, $filter, $http) {
 
 	$scope.isCollapsed = true;
-	$scope.loading = true;
+	$scope.selectedStatus = 'processing';
+	firstLoad($scope, $filter, $http, 'processing');
+	$scope.filterStatus = function(status){
+		firstLoad($scope, $filter, $http, status);
+	};
+});
 
-
- $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
+ var firstLoad = function($scope, $filter, $http, status){
+ 	
+	jQuery('.loading').show();
+ $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
 		  // init
 
@@ -32,7 +39,6 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    }
 			    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
 			  };
-  
 
 		  $scope.sortingOrder = sortingOrder;
 		  $scope.pageSizes = [5,10,25,50];
@@ -45,13 +51,20 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  $scope.allItems = response;
 		  $scope.items = collections(response);
 
+		  // $scope.statusOptions = [
+		  //     {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
+		  //     {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
+		  //     {id:'manually_processed', name:'Manually Processing'},
+		  //     {id:'prescription_approved', name:'Prescription Approved'},
+		  //     {id:'prescription_denied', name:'Prescription Denied'},
+		  //     {id:'prescription_only_approved', name:'Prescription Only Approved'}
+		     
+		  //   ];
 		  $scope.statusOptions = [
-		      {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
-		      {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
-		      {id:'manually_processed', name:'Manually Processing'},
+		      {id:'processing', name:'Processing'},
 		      {id:'prescription_approved', name:'Prescription Approved'},
-		      {id:'prescription_denied', name:'Prescription Denied'},
-		      {id:'prescription_only_approved', name:'Prescription Only Approved'}
+		      {id:'processed_bp', name:'Processed BP'},
+		      {id:'complete', name:'Complete'}
 		     
 		    ];
 		  $scope.repeatOptions = [
@@ -62,7 +75,6 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  // init the filtered items
 		  $scope.search = function () {
 		    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-
 		      for(var attr in item) {
 		        if (searchMatch(item['id'], $scope.query))
 		          return true;
@@ -105,17 +117,33 @@ app.controller('initApp', function($scope, $filter, $http) {
 		   //      return false;
 		   //  };
 		  
-		    $scope.changeStatus = function(status){
-		    	$http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
+		    $scope.changeStatus = function(orderid, status){
+		    	var orders_obj = $filter('filter')($scope.allItems, function (d) {return d.id === orderid;});
+		    	console.log(orders_obj);
+		    	// if(status == 'complete'){
+			    // 	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+			    // 	.success(function(response){
+			    // 		alert('Status Approved');
+			    // 	});
+			    // }
+		    	$http.get('http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status)
 		    	.success(function(response){
-		    		alert(status);
+		    		if(status == 'prescription_approved'){
+				    	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+				    	.success(function(response){
+				    		alert('Status Approved');
+				    	});
+				    }
 		    	});
+
+		    	
+		    	
 		    };
 
-		    $scope.changeRepeat = function(status){
+		    $scope.changeRepeat = function(repeat){
 		    	$http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
 		    	.success(function(response){
-		    		alert(status);
+		    		alert(repeat);
 		    	});
 		    };
 
@@ -158,15 +186,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		    
 		    $scope.sortingOrder = newSortingOrder;
 		  };
-		  $scope.loading = false;
+		jQuery('.loading').hide();
     });
-
-
-});
-//initApp.$inject = ['$scope', '$filter', '$http'];
-
-
-
-// function initApp($scope, $filter, $http) {
- 
-// };
+	
+	};
