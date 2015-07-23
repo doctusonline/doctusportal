@@ -51,6 +51,10 @@ class AjaxController extends Controller {
 		return $range;
 	}
 
+	public function pdfError(){
+		return view('errors.503');
+	}
+
 
 	public function generatePDF(Request $request, FPDF $pdf, Files $file){
 		$data = $request->get('data');

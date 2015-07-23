@@ -86,7 +86,7 @@
           </td>
           <td>
           	<div ng-if="item.status == 'prescription_approved'">
-	          	<a href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary">Download PDF</a>
+	          	<a target="_blank" href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary">Download PDF</a>
 	          	<input type="button" class="btn btn-primary" value="Print"/>
           	</div>
           </td>

@@ -28,6 +28,8 @@ Route::get('iframe','BookingController@iframe');
 Route::get('payment','PaymentController@index');
 Route::get('payment/{reference}','PaymentController@index');
 
+Route::get('pdf/{file}','AjaxController@pdfError');
+
 /* AJAX Controller */
 Route::group(array('prefix' => 'ajax'), function(){
 	Route::post('generate/orders', 'AjaxController@orders');
