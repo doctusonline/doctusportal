@@ -67,7 +67,8 @@ class AjaxController extends Controller {
 		$region 			= $data[0]['region'];
 		$postcode 			= $data[0]['postcode'];
 		//date('Y-m-d_h-i-s_').
-		$temp_name = $order_id.'_'.str_replace(' ', '-', $customer_name) . '.pdf';
+		// $temp_name = $order_id.'_'.str_replace(' ', '-', $customer_name) . '.pdf';
+		$temp_name = $order_id.'_'. $customer_name . '.pdf';
 		//$temp_name = 'test';
 
 		// Save the files on DB
