@@ -13,7 +13,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 });
 
  var firstLoad = function($scope, $filter, $http, status){
- 	
+
 	jQuery('.loading').show();
  $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
@@ -129,7 +129,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		    	$http.get('http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status)
 		    	.success(function(response){
 		    		if(status == 'prescription_approved'){
-				    	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
 				    	.success(function(response){
 				    		alert('Status Approved');
 				    	});
