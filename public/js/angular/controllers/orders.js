@@ -3,7 +3,7 @@ var app = angular.module('orderApp', ['ui.bootstrap']);
 var sortingOrder = 'name'; //default sort
 
 app.controller('initApp', function($scope, $filter, $http) {
-
+	var app_env = $scope.appEnv;
 	$scope.isCollapsed = true;
 	$scope.selectedStatus = 'processing';
 	firstLoad($scope, $filter, $http, 'processing');
@@ -14,11 +14,13 @@ app.controller('initApp', function($scope, $filter, $http) {
 
  var firstLoad = function($scope, $filter, $http, status){
 
+	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
  $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
 		  // init
-
+			jQuery('#main-container').removeClass('disabled');
+		  $scope.pdf = (status == 'prescription_approved')?true:false;
 		  var collections = function(data) {
 		      var output = [], 
 		          keys = [];
@@ -117,34 +119,70 @@ app.controller('initApp', function($scope, $filter, $http) {
 		   //      return false;
 		   //  };
 		  
-		    $scope.changeStatus = function(orderid, status){
+		    $scope.changeStatus = function(orderid, status, index){
+				jQuery('#main-container').addClass('disabled');
+				jQuery('.loading').show();
 		    	var orders_obj = $filter('filter')($scope.allItems, function (d) {return d.id === orderid;});
-		    	console.log(orders_obj);
+		    	console.log(index);
+		    	var itemToDelete = $scope.pagedItems[$scope.currentPage][index];
+		        var idxInItems = $scope.items.indexOf(itemToDelete);
+		        $scope.items.splice(idxInItems,1);
+		        $scope.search();
 		    	// if(status == 'complete'){
 			    // 	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
 			    // 	.success(function(response){
 			    // 		alert('Status Approved');
 			    // 	});
 			    // }
-		    	$http.get('http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status)
-		    	.success(function(response){
-		    		if(status == 'prescription_approved'){
-				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
-				    	.success(function(response){
-				    		alert('Status Approved');
+			    $http({
+		            method:'GET',
+		            url : 'http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status+'&time='+Math.random(),
+		        	dataType: "jsonp"})
+			    .success(function(data){
+					jQuery('.loading').hide();
+			    	if(status == 'prescription_approved'){
+				    	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+				    	.success(function(response){	
+				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status +' <br /> Generated PDF file<br /> ['+response+']');			    		
+			    			jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 				    	});
+				    }else{
+				    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status);			    		
+			    		jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 				    }
-		    	});
+					jQuery('#main-container').removeClass('disabled');
+			    });
+
+
+		    	// $http.get('http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status)
+		    	// .success(function(response){
+		    	// 	if(status == 'prescription_approved'){
+				   //  	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
+				   //  	.success(function(response){
+				   //  		alert('Status Approved');
+				   //  	});
+				   //  }
+		    	// });
 
 		    	
 		    	
 		    };
 
-		    $scope.changeRepeat = function(repeat){
-		    	$http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status=processing')
-		    	.success(function(response){
-		    		alert(repeat);
-		    	});
+		    $scope.changeRepeat = function(repeat, orderid, productid){
+		    	
+		    	$http({
+		            method:'GET',
+		            url : 'http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
+		        	dataType: "jsonp"})
+			    .success(function(repeat){
+			    	alert(repeat);
+			    });
+
+
+		    	// $http.get('http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat)
+		    	// .success(function(response){
+		    	// 	alert(repeat);
+		    	// });
 		    };
 
 		  $scope.range = function (start, end) {

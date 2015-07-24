@@ -44,15 +44,30 @@
 	display: none;
 }
 
-.message{
-	 h2{
+.message-portal{
+	background-color: #FAFCE8;
+    box-shadow: 1px 4px 6px rgb(204, 204, 204);
+    color: red;
+    padding: 20px;
+    position: fixed;
+    text-align: center;
+    top: 30%;
+    width: 338px;
+    z-index: 10;
+    border-radius: 4px;
+    left: 34%;
+    display: none;
+	h2{
 		font-size: 16px;
 	}
 	pre{
 		display: none;
 	}
 }
-
+.disabled{
+	pointer-events: none;
+	 opacity: 0.5 !important;
+}
 .options-wrapper.disabled{
 	pointer-events: none;
 	 opacity: 0.5 !important;
@@ -116,4 +131,8 @@
 	.loading{
 		left: 42% !important;
 	}
+	.message-portal{
+		left: 10%;
+	}
+
 }

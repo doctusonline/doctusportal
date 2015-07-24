@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div class="container" ng-app="orderApp">
+<div class="container">
   <div ng-controller="initApp">
-  	<div class="loading"></div>
+  	
     <div class="row">
       <div class="col-md-3">
         <div class="input-group  add-on">
@@ -53,7 +53,7 @@
         <!-- <th class="name"><a ng-click="sort_by('name')">Product Name<i class="fa fa-sort"></i></a></th>  -->      
         <th class="product"><a ng-click="sort_by('product')">Customer Name<i class="fa fa-sort"></i></a></th>
         <th class="description" title="non-sortable">Status</th>
-        <th></th>
+        <th align="center"><div align="center" ng-show="pdf">PDF</div></th>
       </tr>
       </tbody>
       <tfoot>
@@ -84,10 +84,10 @@
           <td>
           	@{{item.status}}
           </td>
-          <td>
+          <td align="center">
           	<div ng-if="item.status == 'prescription_approved'">
-	          	<a target="_blank" href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary">Download PDF</a>
-	          	<input type="button" class="btn btn-primary" value="Print"/>
+	          	<a target="_blank" href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary">View / Print</a>
+	          	<a target="_blank" href="pdf/@{{item.id}}_@{{item.name}}.pdf" class="btn btn-primary" download="pdf/@{{item.id}}_@{{item.name}}.pdf">Download</a>
           	</div>
           </td>
           <!-- <td><a href="javascript:void(0)" ng-click="deleteItem($index)">x</a></td> -->
@@ -110,7 +110,7 @@
 			        </div>
 			        <div class="col-md-2 select-status">
 			        	Status: 
-			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(item.id, status)">
+			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(item.id, status, $index)">
 			          	</select>
 
 			        </div>
@@ -124,7 +124,7 @@
 				          		<div class="col-md-6"><h4><u>@{{p.product}}</u></h4>
 				          			<label>SKU: </label><span>@{{p.sku}}</span>
 				          		</div>
-					          	<div class="col-md-2 pull-right" ng-if="p.type == 'simple'">Repeats: <select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat)">
+					          	<div class="col-md-2 pull-right" ng-if="p.type == 'simple'">Repeats: <select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat, item.id, p.productid)">
 					          	</select></div>
 				          	</fieldset>
 					        <fieldset ng-if="p.options">

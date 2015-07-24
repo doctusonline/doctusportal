@@ -72,9 +72,12 @@ class AjaxController extends Controller {
 		//$temp_name = 'test';
 
 		// Save the files on DB
-		$file->order_id = $order_id;
-		$file->filename = $temp_name;
-		$file->save();
+		$fileExist = $file->where('order_id',$order_id)->count();
+		if($fileExist == 0){
+			$file->order_id = $order_id;
+			$file->filename = $temp_name;
+			$file->save();
+		}
 
 		$pdf->FPDF('P','mm','A4');
 		$pdf->AddPage();
@@ -163,7 +166,7 @@ class AjaxController extends Controller {
 
 		//PDF output path
 		$pdf->Output(public_path() . "/pdf/".$temp_name);
-		return public_path() . "/pdf/".$temp_name;
+		return $temp_name;
 	}
 
 

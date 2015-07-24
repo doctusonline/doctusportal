@@ -40,8 +40,9 @@
  
 </head>
 
-<body>
-    
+<body ng-app="orderApp">
+    <div class="loading"></div>
+    <div class="message-portal"></div>
     <div id="main-wrapper">
 
     <div class="main-content cms-page-custom"> <!-- CMS Page Content -->
