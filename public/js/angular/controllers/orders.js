@@ -169,13 +169,15 @@ app.controller('initApp', function($scope, $filter, $http) {
 		    };
 
 		    $scope.changeRepeat = function(repeat, orderid, productid){
-		    	
+		    	jQuery('.loading').show();
 		    	$http({
 		            method:'GET',
 		            url : 'http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
 		        	dataType: "jsonp"})
 			    .success(function(repeat){
-			    	alert(repeat);
+			    	jQuery('.loading').hide();
+			    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated repeats');			    		
+			    	jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 			    });
 
 
