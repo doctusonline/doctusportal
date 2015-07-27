@@ -19,6 +19,7 @@ Route::controllers([
 ]);
 
 Route::get('generate','AjaxController@index');
+Route::get('dompdf','AjaxController@generateDomPdf');
 
 Route::get('/','BookingController@index');
 Route::get('home', 'BookingController@index');

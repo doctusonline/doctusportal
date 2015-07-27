@@ -123,17 +123,18 @@ app.controller('initApp', function($scope, $filter, $http) {
 				jQuery('#main-container').addClass('disabled');
 				jQuery('.loading').show();
 		    	var orders_obj = $filter('filter')($scope.allItems, function (d) {return d.id === orderid;});
-		    	console.log(index);
+		    	
+		    	// $http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+		    	// .success(function(response){	
+		    	// 	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status +' <br /> Generated PDF file<br /> ['+response+']');			    		
+	    		// 	jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
+		    	// });
+
+		   //  	console.log(index);
 		    	var itemToDelete = $scope.pagedItems[$scope.currentPage][index];
 		        var idxInItems = $scope.items.indexOf(itemToDelete);
 		        $scope.items.splice(idxInItems,1);
 		        $scope.search();
-		    	// if(status == 'complete'){
-			    // 	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
-			    // 	.success(function(response){
-			    // 		alert('Status Approved');
-			    // 	});
-			    // }
 			    $http({
 		            method:'GET',
 		            url : 'http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status+'&time='+Math.random(),
