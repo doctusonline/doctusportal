@@ -199,7 +199,7 @@ table{
 				  			</td>
 				  		</tr>
 				  	</table>
-				  	<img class="qcode_bottom" src="images/er_code.png" >
+				  	<!-- <img class="qcode_bottom" src="images/er_code.png" > -->
 			  	</div>
 		  	</td>
 		  	<!-- 2nd Column here -->
