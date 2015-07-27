@@ -96,7 +96,7 @@ table{
 				    <li>Ph: 0243041333</li>
 				    <li>Prescriber No: 2123963</li>
 				  </ul>
-				  <img class="qcode_top" src="{{ asset('/images/bar-code.png') }}" >
+				 <!--  <img class="qcode_top" src="{{ asset('/images/bar-code.png') }}" > -->
 				</div>
   			</td>
   		</tr>
@@ -297,7 +297,7 @@ table{
 				  			</td>
 				  		</tr>
 				  	</table>
-				  	<img class="qcode_bottom" src="{{ asset('/images/er_code.png') }}" >
+				  	<!-- <img class="qcode_bottom" src="{{ asset('/images/er_code.png') }}" > -->
 			  	</div>
 		  	</td>
 	  	</tr>
