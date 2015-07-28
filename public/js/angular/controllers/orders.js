@@ -5,8 +5,8 @@ var sortingOrder = 'name'; //default sort
 app.controller('initApp', function($scope, $filter, $http) {
 	var app_env = $scope.appEnv;
 	$scope.isCollapsed = true;
-	$scope.selectedStatus = 'processing';
-	firstLoad($scope, $filter, $http, 'processing');
+	$scope.selectedStatus = 'awaiting_doctor_review';
+	firstLoad($scope, $filter, $http, 'awaiting_doctor_review');
 	$scope.filterStatus = function(status){
 		firstLoad($scope, $filter, $http, status);
 	};
@@ -53,22 +53,21 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  $scope.allItems = response;
 		  $scope.items = collections(response);
 
+		  $scope.statusOptions = [
+		      {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
+		      {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
+		      {id:'manually_processed', name:'Manually Processing'},
+		      {id:'prescription_approved', name:'Prescription Approved'},
+		      {id:'prescription_denied', name:'Prescription Denied'},
+		      {id:'prescription_only_approved', name:'Prescription Only Approved'}		     
+		    ];
 		  // $scope.statusOptions = [
-		  //     {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
-		  //     {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
-		  //     {id:'manually_processed', name:'Manually Processing'},
+		  //     {id:'processing', name:'Processing'},
 		  //     {id:'prescription_approved', name:'Prescription Approved'},
-		  //     {id:'prescription_denied', name:'Prescription Denied'},
-		  //     {id:'prescription_only_approved', name:'Prescription Only Approved'}
+		  //     {id:'processed_bp', name:'Processed BP'},
+		  //     {id:'complete', name:'Complete'}
 		     
 		  //   ];
-		  $scope.statusOptions = [
-		      {id:'processing', name:'Processing'},
-		      {id:'prescription_approved', name:'Prescription Approved'},
-		      {id:'processed_bp', name:'Processed BP'},
-		      {id:'complete', name:'Complete'}
-		     
-		    ];
 		  $scope.repeatOptions = [
 		  	{id:1, name:1}, {id:2, name:2}, {id:3, name:3}, {id:4, name:4}, {id:5, name:5}, {id:6, name:6},
 		      {id:7, name:7}, {id:8, name:8}, {id:9, name:9}, {id:10, name:10}

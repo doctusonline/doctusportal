@@ -124,7 +124,7 @@
 				          		<div class="col-md-6"><h4><u>@{{p.product}}</u></h4>
 				          			<label>SKU: </label><span>@{{p.sku}}</span>
 				          		</div>
-					          	<div class="col-md-2 pull-right" ng-if="p.type == 'simple'">Repeats: <select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat, item.id, p.productid)">
+					          	<div class="col-md-2 pull-right" ng-if="p.type == 'simple' && p.status == 'prescription_approved'">Repeats: <select class="form-control" ng-options="o.id as o.name for o in repeatOptions" ng-model="repeat" ng-change="changeRepeat(repeat, item.id, p.productid)">
 					          	</select></div>
 				          	</fieldset>
 					        <fieldset ng-if="p.options">
