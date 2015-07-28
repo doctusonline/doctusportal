@@ -137,8 +137,8 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    .success(function(data){
 					jQuery('.loading').hide();
 			    	if(status == 'prescription_approved'){
-				    	//$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
-				    	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
+				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
+				    	//$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
 				    	.success(function(response){	
 				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status to <span class="capitalize">' + $scope.itemStatus(status) +'</span> <br /> Generated PDF file<br /> ['+response+']');			    		
 			    			jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
