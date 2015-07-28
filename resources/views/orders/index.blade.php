@@ -32,12 +32,12 @@
                 <table st-table="rowCollection" class="table table-striped">
                     <thead>
                         <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Medication</th>
-                                <th>Status</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Medication</th>
+                            <th>Status</th>
                         </tr>
                     </thead>    
                     

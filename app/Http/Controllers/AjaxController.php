@@ -8,7 +8,8 @@ use App\Orders;
 use App\Mageorders;
 use App\Classes\FPDF;
 use App\Files;
-
+use Auth;
+use App\User;
 class AjaxController extends Controller {
 
 	public function index(){
@@ -71,9 +72,19 @@ class AjaxController extends Controller {
 		return $pdf;
 	}
 
-	public function generatePDF(Request $request, FPDF $pdf, Files $file){
-		$data = $request->get('data');
+	public function updateOrder(Request $request, Orders $orders){
+		$user = Auth::user();
+		$order_id = $request->get('order_id');
+		$status_code = $request->get('status_code');
+		$orders->order_id_mage = $order_id;
+		$orders->status_code = $status_code;
+		$orders->save();
+		$orders->user()->detach($user->id);
+		$orders->user()->attach($user->id);
+	}
 
+	public function generatePDF(Request $request, FPDF $pdf, Files $file, Orders $orders){
+		$data = $request->get('data');
 		$order_id 			= $data[0]['id'];
 		$customer_name 		= $data[0]['name'];
 		$street 			= $data[0]['street'];
@@ -81,6 +92,7 @@ class AjaxController extends Controller {
 		$country 			= $data[0]['country'];
 		$region 			= $data[0]['region'];
 		$postcode 			= $data[0]['postcode'];
+		$status_code 			= $data[0]['status'];
 		//date('Y-m-d_h-i-s_').
 		// $temp_name = $order_id.'_'.str_replace(' ', '-', $customer_name) . '.pdf';
 		$temp_name = $order_id.'_'. $customer_name . '.pdf';
@@ -106,6 +118,7 @@ class AjaxController extends Controller {
 			$file->filename = $temp_name;
 			$file->save();
 		}
+
 
 		// $pdf->FPDF('P','mm','A4');
 		// $pdf->AddPage();
@@ -205,5 +218,11 @@ class AjaxController extends Controller {
 		return $temp_name;
 	}
 
+	public function getUsers(User $users){
+		return $users->get();
+	}
+	public function getUser(User $users, $user_id){
+		return $users->find($user_id);
+	}
 
 }

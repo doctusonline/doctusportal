@@ -16,5 +16,9 @@ class Orders extends Model {
        return $this->belongsToMany('App\Mageorders');
     }
 
+    public function user(){
+    	return $this->belongsToMany('App\User');
+    }
+
 
 }

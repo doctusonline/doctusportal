@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration {
+class CreateRolesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,13 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('orders', function(Blueprint $table)
+		Schema::create('roles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->unsignedInteger('order_id_mage');
-			$table->string('status_code');
-			$table->string('sku');
+			$table->string('name');
+			$table->string('slug')->unique();
+			$table->string('description')->nullable();
+			$table->integer('level')->default(1);
 			$table->timestamps();
 		});
 	}
@@ -29,7 +30,7 @@ class CreateOrdersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('orders');
+		Schema::drop('roles');
 	}
 
 }

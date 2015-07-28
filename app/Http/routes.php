@@ -31,11 +31,16 @@ Route::get('payment/{reference}','PaymentController@index');
 
 Route::get('pdf/{file}','AjaxController@pdfError');
 
+Route::resource('users','UserController');
+
 /* AJAX Controller */
 Route::group(array('prefix' => 'ajax'), function(){
 	Route::post('generate/orders', 'AjaxController@orders');
 	Route::post('generate/pdf', 'AjaxController@generatePDF');
 	Route::get('generate/pdf', 'AjaxController@generatePDF');
+	Route::post('update/order', 'AjaxController@updateOrder');	
+	Route::get('users', 'AjaxController@getUsers');
+	Route::get('users/{user_id}', 'AjaxController@getUser');
 });
 
 /* API Controller */
