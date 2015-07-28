@@ -53,6 +53,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  $scope.allItems = response;
 		  $scope.items = collections(response);
 
+		  
 		  $scope.statusOptions = [
 		      {id:'awaiting_doctor_review', name:'Awaiting Doctor Review'},
 		      {id:'awaiting_patient_response', name:'Awaiting Patient Response'},
@@ -76,6 +77,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  // init the filtered items
 		  $scope.search = function () {
 		    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
+
 		      for(var attr in item) {
 		        if (searchMatch(item['id'], $scope.query))
 		          return true;
@@ -186,6 +188,10 @@ app.controller('initApp', function($scope, $filter, $http) {
 		    	// 	alert(repeat);
 		    	// });
 		    };
+
+		  $scope.itemStatus = function(e){
+		  	return e.replace(/_/g," ");
+		  };
 
 		  $scope.range = function (start, end) {
 		    var ret = [];

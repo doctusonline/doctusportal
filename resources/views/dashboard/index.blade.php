@@ -81,8 +81,8 @@
           <!-- <td ng-click="isCollapsed = !isCollapsed" >@{{item.product}}</td> -->
           <!-- <td ng-click="isCollapsed = !isCollapsed" ><a href="#myModal" role="button" class="" data-toggle="modal">@{{item.name}}</a></td> -->
           <td>@{{item.name}}</td>
-          <td>
-          	@{{item.status}}
+          <td class="capitalize">
+          	@{{itemStatus(item.status)}}
           </td>
           <td align="center">
           	<div ng-if="item.status == 'prescription_approved'">
@@ -99,7 +99,7 @@
 	        			<h5>Order # @{{item.id}}</h5>
 	        			<p>Order Status: @{{item.status}}</p>
 	        		</div>
-			        <div class="col-md-5">
+			        <div class="col-md-4">
 			          <h5>Account Information</h5>	
 			          <fieldset>
 			          	<span>Customer Name: </span><label>@{{item.name}}</label>
@@ -108,11 +108,15 @@
 			          	<span>Email: </span><label>@{{item.email}}</label>
 			          </fieldset>	      	
 			        </div>
-			        <div class="col-md-2 select-status">
+			        <div class="col-md-3 select-status">
 			        	Status: 
-			          	<select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(item.id, status, $index)">
-			          	</select>
-
+			          	<!-- <select ng-if="item.type == 'simple'" class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="status" ng-change="changeStatus(item.id, status, $index)">
+			          	</select> -->
+                  <select ng-if="item.type == 'simple'" class="form-control" ng-model="status" ng-change="changeStatus(item.id, status, $index)">
+                    <option ng-repeat="statusOption in statusOptions" value="@{{statusOption.id}}" ng-selected="item.status === statusOption.id">
+                        @{{statusOption.name}}
+                    </option>
+                </select>
 			        </div>
 	        	</div>
 	        	<div class="row">

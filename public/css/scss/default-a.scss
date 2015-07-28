@@ -122,7 +122,9 @@
 		}
 	}
 }
-
+.capitalize{
+	text-transform: capitalize;
+}
 
 @media (max-width: 450px){
 	.message{
