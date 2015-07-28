@@ -177,16 +177,29 @@ table{
 	  						</td>
 				  		</tr>
 				  	</table>
-				  	<table style="margin-top:10px;" width="100%" class="detail-form">				  		
-				  		<tr>
-				  			<td width="20%">
-				  				
-				  			</td>
-				  			<td width="80%">
-				  				<strong>Product Name</strong> <br />
-				  				Quantity 12 - 2 repeats
-				  			</td>
-				  		</tr>
+				  	<table style="margin-top:10px;" width="100%" class="detail-form">
+				  		@foreach($data as $item)		
+				  			@if($item['type']=='simple')  		
+					  		<tr>
+					  			<td width="20%">
+					  				
+					  			</td>
+					  			<td width="80%">
+					  				<strong>{{ $item['product'] }}</strong> <br />
+					  				Quantity 1 - x repeats
+					  			</td>
+					  		</tr>
+					  		@else
+					  		<tr>
+					  			<td width="20%">
+					  				
+					  			</td>
+					  			<td width="80%">
+					  				<strong>{{ $item['product'] }}</strong> <br />
+					  			</td>
+					  		</tr>
+					  		@endif
+				  		@endforeach
 				  	</table>
 				  	<table style="margin-top:50px;" width="100%" class="detail-form">				  		
 				  		<tr>

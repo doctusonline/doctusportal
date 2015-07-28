@@ -71,7 +71,8 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  //   ];
 		  $scope.repeatOptions = [
 		  	{id:1, name:1}, {id:2, name:2}, {id:3, name:3}, {id:4, name:4}, {id:5, name:5}, {id:6, name:6},
-		      {id:7, name:7}, {id:8, name:8}, {id:9, name:9}, {id:10, name:10}
+		      {id:7, name:7}, {id:8, name:8}, {id:9, name:9}, {id:10, name:10}, {id:11, name:11}, {id:12, name:12},
+		      {id:13, name:13}, {id:14, name:14}, {id:15, name:15}
 		  ];
 
 		  // init the filtered items
@@ -124,14 +125,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 				jQuery('#main-container').addClass('disabled');
 				jQuery('.loading').show();
 		    	var orders_obj = $filter('filter')($scope.allItems, function (d) {return d.id === orderid;});
-		    	
-		    	// $http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
-		    	// .success(function(response){	
-		    	// 	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status +' <br /> Generated PDF file<br /> ['+response+']');			    		
-	    		// 	jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
-		    	// });
 
-		   //  	console.log(index);
 		    	var itemToDelete = $scope.pagedItems[$scope.currentPage][index];
 		        var idxInItems = $scope.items.indexOf(itemToDelete);
 		        $scope.items.splice(idxInItems,1);
@@ -143,7 +137,8 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    .success(function(data){
 					jQuery('.loading').hide();
 			    	if(status == 'prescription_approved'){
-				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
+				    	//$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
+				    	$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
 				    	.success(function(response){	
 				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status to <span class="capitalize">' + $scope.itemStatus(status) +'</span> <br /> Generated PDF file<br /> ['+response+']');			    		
 			    			jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
@@ -154,39 +149,22 @@ app.controller('initApp', function($scope, $filter, $http) {
 				    }
 					jQuery('#main-container').removeClass('disabled');
 			    });
-
-
-		    	// $http.get('http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status)
-		    	// .success(function(response){
-		    	// 	if(status == 'prescription_approved'){
-				   //  	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
-				   //  	.success(function(response){
-				   //  		alert('Status Approved');
-				   //  	});
-				   //  }
-		    	// });
-
-		    	
-		    	
+	    	
 		    };
 
 		    $scope.changeRepeat = function(repeat, orderid, productid){
+		    	jQuery('#main-container').addClass('disabled');
 		    	jQuery('.loading').show();
 		    	$http({
 		            method:'GET',
 		            url : 'http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
 		        	dataType: "jsonp"})
 			    .success(function(repeat){
+			    	jQuery('#main-container').removeClass('disabled');
 			    	jQuery('.loading').hide();
 			    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated repeats');			    		
 			    	jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 			    });
-
-
-		    	// $http.get('http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat)
-		    	// .success(function(response){
-		    	// 	alert(repeat);
-		    	// });
 		    };
 
 		  $scope.itemStatus = function(e){
