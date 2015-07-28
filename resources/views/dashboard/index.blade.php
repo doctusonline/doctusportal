@@ -97,7 +97,7 @@
 	        	<div class="row">
 	        		<div class="col-md-5">
 	        			<h5>Order # @{{item.id}}</h5>
-	        			<p>Order Status: @{{item.status}}</p>
+	        			<p class="capitalize">Order Status: @{{itemStatus(item.status)}}</p>
 	        		</div>
 			        <div class="col-md-4">
 			          <h5>Account Information</h5>	
