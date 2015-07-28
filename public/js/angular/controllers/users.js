@@ -6,7 +6,7 @@ app.controller('initUser', function($scope, $filter, $http) {
 	
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
- 	$http.get('http://localhost/doctusportal/public/ajax/users')
+ 	$http.get('http://gp.doctus.com.au/ajax/users')
     .success(function(response){        
 		  // init
 			jQuery('#main-container').removeClass('disabled');
@@ -80,7 +80,7 @@ app.controller('initUser', function($scope, $filter, $http) {
 		  };
 		  
 		  $scope.editUser = function(user_id){
-		  	$http.get('http://localhost/doctusportal/public/ajax/users/'+user_id)
+		  	$http.get('http://gp.doctus.com.au/ajax/users/'+user_id)
 		  	.success(function(response){
 		  		$scope.first_name = response.first_name;
 		  		$scope.last_name = response.last_name;
