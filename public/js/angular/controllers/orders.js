@@ -145,11 +145,11 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    	if(status == 'prescription_approved'){
 				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
 				    	.success(function(response){	
-				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status +' <br /> Generated PDF file<br /> ['+response+']');			    		
+				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status to <span class="capitalize">' + $scope.itemStatus(status) +'</span> <br /> Generated PDF file<br /> ['+response+']');			    		
 			    			jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 				    	});
 				    }else{
-				    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status code to ' + status);			    		
+				    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status to <span class="capitalize">' + $scope.itemStatus(status) + '</span>');			    		
 			    		jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 				    }
 					jQuery('#main-container').removeClass('disabled');
