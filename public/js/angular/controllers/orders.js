@@ -1,10 +1,7 @@
 var app = angular.module('orderApp', ['ui.bootstrap']);
 var hostname = 'http://gp.doctus.com.au';
 var apiKey = '7e56fb7d3287772f05bbf31dba4a85d5';
-if (document.location.hostname == "localhost"){
-	hostname = 'http://localhost/doctusportal/public';
-	apiKey = '6044568d6704a8fbc017c65db29e862c';
-}
+
 var mage_hostname = 'http://52.64.118.158';
 var sortingOrder = 'name'; //default sort
 
@@ -20,7 +17,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 
  var firstLoad = function($scope, $filter, $http, status){
 
- 	$http.post(mage_hostname+'/mage-api/api.php?apiKey='+apiKey+'&type=order-json',{order_id:1,status_code:1})
+ 	$http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
     .success(function(response){	
     	
     });
