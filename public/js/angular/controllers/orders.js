@@ -17,14 +17,14 @@ app.controller('initApp', function($scope, $filter, $http) {
 
  var firstLoad = function($scope, $filter, $http, status){
 
- 	$http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
-    .success(function(response){	
+ 	// $http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
+  //   .success(function(response){	
     	
-    });
+  //   });
 
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
- $http.get(mage_hostname+'/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
+ $http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
 		  // init
 			jQuery('#main-container').removeClass('disabled');
