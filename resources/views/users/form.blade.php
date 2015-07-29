@@ -21,6 +21,13 @@
    </div>
 
    <div class="form-group row">
+        {!! Form::label('telephone','Telephone:', ['class' => 'col-md-3 control-label']) !!}
+        <div class="col-md-6">
+        <input type="text" id="telephone" value="@{{telephone}}" class="form-control" />
+        </div>
+   </div>  
+
+   <div class="form-group row">
         {!! Form::label('email','Email:', ['class' => 'col-md-3 control-label']) !!}
         <div class="col-md-6">
         <input type="text" id="email" value="@{{email}}" class="form-control" />
@@ -50,7 +57,7 @@
             </div>
    <div class="form-group row">
       <div class="col-md-12" align="center">
-        <input type="button" id="save_btn" value="Save" class="btn btn-primary"/>
+        <input type="button" id="save_btn" value="Save" ng-model="user_id" ng-click="save(user_id)" class="btn btn-primary"/>
         </div>
    </div>
  

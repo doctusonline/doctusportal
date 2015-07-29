@@ -82,7 +82,8 @@
 					@if (Auth::guest())
 						<li> <a class="btn btn-default signin" href="{{ url('/auth/login') }}" role="button">Sign In</a> </li>
 						<li> <a class="btn btn-default signup" href="{{ url('/auth/register') }}" role="button">REGISTER</a> </li>
-					@else
+					@else                        
+                        <li> <a href="{{url('dashboard')}}">Dashboard</a> </li>
                         <li> <a href="{{url('users')}}">Users</a> </li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>

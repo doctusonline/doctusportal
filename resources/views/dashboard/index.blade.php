@@ -51,7 +51,8 @@
         <th class="id"><a ng-click="sort_by('id')">Order ID<i class="fa fa-sort"></i></a></th>
         <!-- <th class="sku"><a ng-click="sort_by('sku')">SKU <i class="fa fa-sort"></i></a></th> -->
         <!-- <th class="name"><a ng-click="sort_by('name')">Product Name<i class="fa fa-sort"></i></a></th>  -->      
-        <th class="product"><a ng-click="sort_by('product')">Customer Name<i class="fa fa-sort"></i></a></th>
+        <th class="product"><a ng-click="sort_by('product')">Customer Name<i class="fa fa-sort"></i></a></th>      
+        <th class="email"><a ng-click="sort_by('email')">Email<i class="fa fa-sort"></i></a></th>
         <th class="description" title="non-sortable">Status</th>
         <th align="center"><div align="center" ng-show="pdf">PDF</div></th>
       </tr>
@@ -81,6 +82,7 @@
           <!-- <td ng-click="isCollapsed = !isCollapsed" >@{{item.product}}</td> -->
           <!-- <td ng-click="isCollapsed = !isCollapsed" ><a href="#myModal" role="button" class="" data-toggle="modal">@{{item.name}}</a></td> -->
           <td>@{{item.name}}</td>
+          <td>@{{item.email}}</td>
           <td class="capitalize">
           	@{{itemStatus(item.status)}}
           </td>

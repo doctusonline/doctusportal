@@ -1,5 +1,9 @@
 var app = angular.module('orderApp', ['ui.bootstrap']);
-
+var hostname = 'http://gp.doctus.com.au';
+if (document.location.hostname == "localhost"){
+	hostname = 'http://localhost/doctusportal/public'
+}
+var mage_hostname = 'http://52.64.118.158';
 var sortingOrder = 'name'; //default sort
 
 app.controller('initApp', function($scope, $filter, $http) {
@@ -16,7 +20,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
- $http.get('http://52.64.118.158/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
+ $http.get(mage_hostname+'/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
 		  // init
 			jQuery('#main-container').removeClass('disabled');
@@ -135,19 +139,19 @@ app.controller('initApp', function($scope, $filter, $http) {
 
 			    $http({
 		            method:'GET',
-		            url : 'http://52.64.118.158/mage-api/update_status.php?order_id='+orderid+'&status='+status+'&time='+Math.random(),
+		            url : mage_hostname+'/mage-api/update_status.php?order_id='+orderid+'&status='+status+'&time='+Math.random(),
 		        	dataType: "jsonp"})
 			    .success(function(data){
 					jQuery('.loading').hide();
 
 					//$http.post('http://localhost/doctusportal/public/ajax/update/order',{order_id:orderid,status_code:status})
-				    $http.post('http://gp.doctus.com.au/ajax/update/order',{order_id:orderid,status_code:status})
+				    $http.post(hostname+'/ajax/update/order',{order_id:orderid,status_code:status})
 				    .success(function(response){	
-
+				    	
 				    });
 
 			    	if(status == 'prescription_approved'){
-				    	$http.post('http://gp.doctus.com.au/ajax/generate/pdf',{data:orders_obj})
+				    	$http.post(hostname+'/ajax/generate/pdf',{data:orders_obj})
 				    	//$http.post('http://localhost/doctusportal/public/ajax/generate/pdf',{data:orders_obj})
 				    	.success(function(response){	
 				    		jQuery('.message-portal').html('Order# '+orderid+'<br />Updated status to <span class="capitalize">' + $scope.itemStatus(status) +'</span> <br /> Generated PDF file<br /> ['+response+']');			    		
@@ -167,7 +171,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		    	jQuery('.loading').show();
 		    	$http({
 		            method:'GET',
-		            url : 'http://52.64.118.158/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
+		            url : mage_hostname+'/mage-api/reorder.php?orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
 		        	dataType: "jsonp"})
 			    .success(function(repeat){
 			    	jQuery('#main-container').removeClass('disabled');

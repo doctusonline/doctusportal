@@ -7,6 +7,23 @@
 @section('content')
 <div class="container">
   <div ng-controller="initUser">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- <div class="input-group  add-on">
+          <input type="text" class="form-control search-query" ng-model="query" ng-change="search()" placeholder="Search User ID">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div> -->
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-center">Users</h4>
+      </div>
+      <div class="col-md-3">
+        <select class="form-control pull-right" ng-model="itemsPerPage" ng-change="perPage()" ng-options="('show '+size+' per page') for size in pageSizes"></select>
+      </div>
+    </div>   
+
   	<table class="table table-striped table-hover">
       <tbody><tr>
         <th class="user_id"><a ng-click="sort_by('id')">ID<i class="fa fa-sort"></i></a></th>    
@@ -40,7 +57,7 @@
           <td>@{{item.email}}</td>
           <td>@{{item.role}}</td>
           <td align="center">
-            <button type="button" class="btn btn-info btn-primary" ng-click="editUser(item.id)" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button type="button" class="btn btn-info btn-primary">Edit</button>
           </td>
           <!-- <td><a href="javascript:void(0)" ng-click="deleteItem($index)">x</a></td> -->
         </tr>

@@ -1,4 +1,8 @@
 var app = angular.module('orderApp', ['ui.bootstrap']);
+var hostname = 'http://gp.doctus.com.au';
+if (document.location.hostname == "localhost"){
+	hostname = 'http://localhost/doctusportal/public'
+}
 
 var sortingOrder = 'name'; //default sort
 
@@ -6,7 +10,7 @@ app.controller('initUser', function($scope, $filter, $http) {
 	
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
- 	$http.get('http://gp.doctus.com.au/ajax/users')
+ 	$http.get(hostname+'/ajax/users')
     .success(function(response){        
 		  // init
 			jQuery('#main-container').removeClass('disabled');
@@ -47,7 +51,7 @@ app.controller('initUser', function($scope, $filter, $http) {
 		    $scope.filteredItems = $filter('filter')($scope.items, function (item) {
 
 		      for(var attr in item) {
-		        if (searchMatch(item['id'], $scope.query))
+		        if (searchMatch(item[attr], $scope.query))
 		          return true;
 		      }
 		      return false;
@@ -79,12 +83,21 @@ app.controller('initUser', function($scope, $filter, $http) {
 		    }
 		  };
 		  
+		  //Popup edit form
 		  $scope.editUser = function(user_id){
-		  	$http.get('http://gp.doctus.com.au/ajax/users/'+user_id)
+		  	$http.get(hostname+'/ajax/users/'+user_id)
 		  	.success(function(response){
+		  		$scope.user_id = user_id;
 		  		$scope.first_name = response.first_name;
 		  		$scope.last_name = response.last_name;
 		  		$scope.email = response.email;
+		  	});
+		  };
+		  //Save User
+		  $scope.save = function(user_id){
+		  	$http.get(hostname+'/ajax/users/'+user_id)
+		  	.success(function(response){
+
 		  	});
 		  };
 

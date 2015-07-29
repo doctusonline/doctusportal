@@ -9,6 +9,11 @@ use Auth;
 use App\User;
 class UserController extends Controller {
 
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -36,9 +41,11 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
+	public function store(Request $request, User $user)
+	{	
+		$user->create($request->all());
+		$user->save();
+		$user->attachRole($request->input('role'));
 	}
 
 	/**
