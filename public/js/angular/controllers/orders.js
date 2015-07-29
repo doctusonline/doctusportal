@@ -18,6 +18,11 @@ app.controller('initApp', function($scope, $filter, $http) {
 
  var firstLoad = function($scope, $filter, $http, status){
 
+ 	$http.post(mage_hostname+'/mage-api/api.php?apiKey=NjA0NDU2OGQ2NzA0YThmYmMwMTdjNjVkYjI5ZTg2MmM=&type=order-json',{order_id:1,status_code:1})
+    .success(function(response){	
+    	
+    });
+
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
  $http.get(mage_hostname+'/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
