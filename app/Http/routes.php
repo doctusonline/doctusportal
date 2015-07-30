@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+header('Access-Control-Allow-Origin: http://52.64.118.158');
 
 Route::get('dashboard', 'WelcomeController@index');
 Route::get('homepage', 'HomeController@index');
