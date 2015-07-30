@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
   <div ng-controller="initApp">
-  	
+  	<!-- <iframe src="http://localhost/doctus/mage-api/api-test.php" width="100%" height="300px"></iframe> -->
     <div class="row">
       <div class="col-md-3">
         <div class="input-group  add-on">

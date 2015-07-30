@@ -1,8 +1,13 @@
 var app = angular.module('orderApp', ['ui.bootstrap']);
 var hostname = 'http://gp.doctus.com.au';
-var apiKey = '7e56fb7d3287772f05bbf31dba4a85d5';
-
 var mage_hostname = 'http://52.64.118.158';
+if (document.location.hostname == "localhost"){
+	hostname = 'http://localhost/doctusportal/public';
+	mage_hostname = 'http://localhost/doctus';
+}
+
+//mage_hostname = 'http://52.64.118.158';
+
 var sortingOrder = 'name'; //default sort
 
 app.controller('initApp', function($scope, $filter, $http) {
@@ -16,15 +21,28 @@ app.controller('initApp', function($scope, $filter, $http) {
 });
 
  var firstLoad = function($scope, $filter, $http, status){
-
- 	// $http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
-  //   .success(function(response){	
-    	
-  //   });
+ 	$http.get(mage_hostname+'/mage-api/auto-login.php')
+    .success(function(url){
+	 	$http({
+        method:'GET',
+        url : url})
+	    .success(function(response){
+			$http.get(mage_hostname+'/mage-api/api-test.php?display=orders')
+		    .success(function(response){
+		    	var token = response.oauth_token;
+		    	if(token !== undefined)
+		    	$http.get(mage_hostname+'/index.php/admin/oauth_authorize/confirm?oauth_token='+token)
+			    .success(function(response){	
+			    	//console.log(response);
+			    });
+			    //console.log(response);
+		    });
+	    });
+	});
 
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
- $http.get(mage_hostname+'/mage-api/orders-json-2.php?apiKey='+apiKey+'&range=month&status='+status+'&time='+Math.random())
+ $http.get(mage_hostname+'/mage-api/orders-json.php?range=month&status='+status+'&time='+Math.random())
     .success(function(response){        
 		  // init
 			jQuery('#main-container').removeClass('disabled');
