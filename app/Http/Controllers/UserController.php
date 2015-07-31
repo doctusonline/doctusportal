@@ -76,9 +76,15 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, User $user)
 	{
-		//
+		$user_id = $request->get('user_id');
+		
+		$user = $user->find($user_id);
+		$user->fill($request->all());
+		// Update user role
+		$user->roles()->detach();
+		$user->roles()->attach($request->get('role'));
 	}
 
 	/**

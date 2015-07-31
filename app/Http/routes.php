@@ -41,6 +41,7 @@ Route::group(array('prefix' => 'ajax'), function(){
 	Route::post('update/order', 'AjaxController@updateOrder');	
 	Route::get('users', 'AjaxController@getUsers');
 	Route::get('users/{user_id}', 'AjaxController@getUser');
+	Route::post('users/update','UserController@update');
 });
 
 /* API Controller */

@@ -15,6 +15,13 @@
 
 <div ng-app="app_orders">
     <div ng-controller="orderController">
+
+    <ul>
+    @foreach($tracks as $item)
+        <li>{{$item->user[0]->first_name}}--{{$item->order_id_mage}}--{{$item->status_code}}--{{$item->created_at}}</li>
+    @endforeach
+    </ul>
+
         <form ng-submit="migrateOrders(range)">
             <select ng-model="range">
                 <option value="day">Day</option>

@@ -17,8 +17,11 @@ class AjaxController extends Controller {
 	// 	$this->middleware('auth');
 	// }
 
-	public function index(){
-		return view('generate.index');
+	public function index(User $user, Orders $orders){
+
+		$tracks = $orders->all();
+		//dd($tracks);
+		return view('generate.index',compact('tracks'));
 	}
 
 	public function orders(Request $request){

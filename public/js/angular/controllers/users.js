@@ -87,17 +87,36 @@ app.controller('initUser', function($scope, $filter, $http) {
 		  $scope.editUser = function(user_id){
 		  	$http.get(hostname+'/ajax/users/'+user_id)
 		  	.success(function(response){
+		  		$scope.roleOptions = [
+			      {id:'1', name:'Admin'},
+			      {id:'2', name:'Doctor'},
+			      {id:'3', name:'Magento User'}		     
+			    ];
+		  		
 		  		$scope.user_id = user_id;
 		  		$scope.first_name = response.first_name;
 		  		$scope.last_name = response.last_name;
+		  		$scope.telephone = response.telephone;
 		  		$scope.email = response.email;
+		  		$scope.role = response.role;
+
 		  	});
 		  };
 		  //Save User
-		  $scope.save = function(user_id){
-		  	$http.get(hostname+'/ajax/users/'+user_id)
-		  	.success(function(response){
 
+
+
+
+		  $scope.save = function(user_id){
+		  	var first_name = $scope.first_name;
+		  	var last_name = $scope.last_name;
+		  	var email = $scope.email;
+		  	var telephone = $scope.telephone;
+		  	var role = $scope.role;
+		  	console.log(role);
+		  	$http.post(hostname+'/ajax/users/update',{user_id:user_id,first_name:first_name,last_name:last_name,email:email,telephone:telephone,role:role})
+		  	.success(function(response){
+		  		console.log(response);
 		  	});
 		  };
 
