@@ -94,6 +94,7 @@ app.controller('initUser', function($scope, $filter, $http) {
 		  		$scope.last_name = response.user.last_name;
 		  		$scope.telephone = response.user.telephone;
 		  		$scope.email = response.user.email;
+		  		if(response.role)
 		  		$scope.role = response.role[0].id;
 
 		  	});
