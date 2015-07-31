@@ -82,29 +82,28 @@ app.controller('initUser', function($scope, $filter, $http) {
 		      }
 		    }
 		  };
-		  
+		 
 		  //Popup edit form
 		  $scope.editUser = function(user_id){
 		  	$http.get(hostname+'/ajax/users/'+user_id)
 		  	.success(function(response){
-		  		$scope.roleOptions = [
-			      {id:'1', name:'Admin'},
-			      {id:'2', name:'Doctor'},
-			      {id:'3', name:'Magento User'}		     
-			    ];
-		  		
+		  		//console.log(response.role[0].id);
+
 		  		$scope.user_id = user_id;
-		  		$scope.first_name = response.first_name;
-		  		$scope.last_name = response.last_name;
-		  		$scope.telephone = response.telephone;
-		  		$scope.email = response.email;
-		  		$scope.role = response.role;
+		  		$scope.first_name = response.user.first_name;
+		  		$scope.last_name = response.user.last_name;
+		  		$scope.telephone = response.user.telephone;
+		  		$scope.email = response.user.email;
+		  		$scope.role = response.role[0].id;
 
 		  	});
 		  };
 		  //Save User
-
-
+ 			$scope.roleOptions = [
+			      {id:'1', name:'Admin'},
+			      {id:'2', name:'Doctor'},
+			      {id:'3', name:'Magento User'}		     
+			    ];
 
 
 		  $scope.save = function(user_id){
@@ -117,6 +116,9 @@ app.controller('initUser', function($scope, $filter, $http) {
 		  	$http.post(hostname+'/ajax/users/update',{user_id:user_id,first_name:first_name,last_name:last_name,email:email,telephone:telephone,role:role})
 		  	.success(function(response){
 		  		console.log(response);
+		  		jQuery('.message-portal').css('z-index','10000');
+		  		jQuery('.message-portal').html('Updated user');			    		
+			    jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
 		  	});
 		  };
 

@@ -10,6 +10,7 @@ use App\Classes\FPDF;
 use App\Files;
 use Auth;
 use App\User;
+use Bican\Roles\Models\Role;
 class AjaxController extends Controller {
 
 	// public function __construct()
@@ -230,7 +231,8 @@ class AjaxController extends Controller {
 		return $users->get();
 	}
 	public function getUser(User $users, $user_id){
-		return $users->find($user_id);
+		$data = ['user'=>$users->find($user_id),'role'=>$users->find($user_id)->roles()->get()];
+		return $data;
 	}
 
 }

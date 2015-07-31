@@ -53,9 +53,8 @@
         {!! Form::label('role', 'Role',['class'=>'col-md-3 control-label']) !!}
               <div class="col-md-6">   
              <!--  {!! Form::select('role', $roles, $selected_role,['class'=>'form-control']) !!} -->
-             @{{role}}
              <select class="form-control" ng-model="role">
-                    <option ng-repeat="roleOption in roleOptions" value="@{{roleOption.id}}" ng-selected="role == roleOption.id">
+                    <option ng-repeat="roleOption in roleOptions" value="@{{roleOption.id}}" ng-selected="role === roleOption.id">
                         @{{roleOption.name}}
                     </option>
                 </select>
