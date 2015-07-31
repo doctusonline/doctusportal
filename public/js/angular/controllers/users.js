@@ -85,6 +85,13 @@ app.controller('initUser', function($scope, $filter, $http) {
 		 
 		  //Popup edit form
 		  $scope.editUser = function(user_id){
+		  	$scope.user_id = '';
+	  		$scope.first_name = '';
+	  		$scope.last_name = '';
+	  		$scope.telephone = '';
+	  		$scope.email = '';
+	  		$scope.role = '';
+
 		  	$http.get(hostname+'/ajax/users/'+user_id)
 		  	.success(function(response){
 		  		//console.log(response.role[0].id);
