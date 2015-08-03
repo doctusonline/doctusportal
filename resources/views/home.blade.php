@@ -22,7 +22,7 @@
 					<p><strong>Recent Activity</strong></p>
 					<ul>
 					@foreach($activities as $item)
-				        <li>Dr. {{$item->user[0]->last_name}} <span class="capitalize">{{str_replace('_',' ',$item->status_code)}}</span> Order #{{$item->order_id_mage}} - {{$item->created_at}}</li>
+				        <li>Dr. {{$item->user[0]->last_name}} <span class="capitalize">{{str_replace('_',' ',$item->value)}}</span> Order #{{$item->order_id_mage}} - {{$item->created_at}}</li>
 				    @endforeach
 				    </ul>
 					<p>Dr Beckwith Approved Archie’s STD Prescription order request <br />
