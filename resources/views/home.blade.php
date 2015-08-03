@@ -21,7 +21,7 @@
 
 					<p><strong>Recent Activity</strong></p>
 					<ul>
-					@foreach($tracks as $item)
+					@foreach($activities as $item)
 				        <li>Dr. {{$item->user[0]->last_name}} <span class="capitalize">{{str_replace('_',' ',$item->status_code)}}</span> Order #{{$item->order_id_mage}} - {{$item->created_at}}</li>
 				    @endforeach
 				    </ul>

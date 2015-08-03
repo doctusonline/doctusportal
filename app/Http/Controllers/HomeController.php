@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Auth;
-use App\Orders;
+use App\Activities;
 class HomeController extends Controller {
 
 	/*
@@ -30,17 +30,17 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(Orders $orders)
+	public function index(Activities $activities)
 	{
 		$user = Auth::user();
-		$tracks = $orders->all();
+		$activities = $activities->all();
 		$filename = asset('/images/profile_pic/'.$user->id.'.png');
 		$file_headers = @get_headers($filename);
 		if($file_headers[0] == 'HTTP/1.0 404 Not Found')
 		{
 			$filename = url('/images/profile_pic/person-icon.png'); 
 		}
-		return view('home',compact('user', 'tracks','filename'));
+		return view('home',compact('user', 'activities','filename'));
 	}
 
 }
