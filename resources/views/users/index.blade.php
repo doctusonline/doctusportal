@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="container">
-  <div ng-controller="initUser">
+<div class="">
+  <div>
     <div class="row">
       <div class="col-md-3">
         <!-- <div class="input-group  add-on">

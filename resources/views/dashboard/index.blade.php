@@ -5,41 +5,40 @@
 @endsection
 
 @section('content')
-<div class="container">
-  <div ng-controller="initApp">
+<!-- <div class="container"> -->
+  <div>
   	<!-- <iframe src="http://localhost/doctus/mage-api/api-test.php" width="100%" height="300px"></iframe> -->
     <div class="row">
-      <div class="col-md-3">
-        <div class="input-group  add-on">
-          <input type="text" class="form-control search-query" ng-model="query" ng-change="search()" placeholder="Search Order ID">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+      <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Modal header</h3>
+          </div>
+          <div class="modal-body">
+            <p>One fine body…</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary">Save changes</button>
           </div>
         </div>
-			<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-			<div class="modal-content">
-			  <div class="modal-header">
-			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			      <h3 id="myModalLabel">Modal header</h3>
-			  </div>
-			  <div class="modal-body">
-			    <p>One fine body…</p>
-			  </div>
-			  <div class="modal-footer">
-			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			    <button class="btn btn-primary">Save changes</button>
-			  </div>
-			</div>
-			</div>
-			</div>
+        </div>
+        </div>
+      <div class="col-md-6">
+          <h4 class="">Order List</h4>
+  			
       </div>
       <div class="col-md-3">
-      	<h4 class="text-center">Order List</h4>
-      </div>
-      <div class="col-md-3">
-        <select  class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="selectedStatus" ng-change="filterStatus(selectedStatus)">
-		</select>
+       <!--  <select  class="form-control" ng-options="o.id as o.name for o in statusOptions" ng-model="selectedStatus" ng-change="filterStatus(selectedStatus)">
+		</select> -->
+          <div class="input-group  add-on">
+            <input type="text" class="form-control search-query" ng-model="query" ng-change="search()" placeholder="Search Order ID">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
       </div>
       <div class="col-md-3">
         <select class="form-control pull-right" ng-model="itemsPerPage" ng-change="perPage()" ng-options="('show '+size+' per page') for size in pageSizes"></select>
@@ -47,7 +46,7 @@
     </div>    
     <table class="table table-striped table-hover">
       <tbody><tr>
-        <th class="productid"><a ng-click="sort_by('productid')">Product ID<i class="fa fa-sort"></i></a></th>
+        <!-- <th class="productid"><a ng-click="sort_by('productid')">Product ID<i class="fa fa-sort"></i></a></th> -->
         <th class="id"><a ng-click="sort_by('id')">Order ID<i class="fa fa-sort"></i></a></th>
         <!-- <th class="sku"><a ng-click="sort_by('sku')">SKU <i class="fa fa-sort"></i></a></th> -->
         <!-- <th class="name"><a ng-click="sort_by('name')">Product Name<i class="fa fa-sort"></i></a></th>  -->      
@@ -76,7 +75,7 @@
       </tr></tfoot>
       <tbody>
         <tr ng-click="isCollapsed = !isCollapsed" ng-repeat-start="item in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
-          <td>@{{item.productid}}</td>
+          <!-- <td>@{{item.productid}}</td> -->
           <td>@{{item.id}}</td>
           <!-- <td>@{{item.sku}}</td> -->
           <!-- <td ng-click="isCollapsed = !isCollapsed" >@{{item.product}}</td> -->
@@ -150,7 +149,7 @@
       </tbody>
     </table>
   </div>
-</div>
+<!-- </div> -->
   
 <!-- JavaScript jQuery code from Bootply.com editor  -->
 <script type='text/javascript' src="{{ asset('js/angular/controllers/orders.js') }}"></script>

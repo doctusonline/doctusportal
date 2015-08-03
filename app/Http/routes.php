@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('dashboard', 'WelcomeController@index');
+Route::get('orders', 'WelcomeController@index');
+Route::get('dashboard', 'HomeController@index');
 Route::get('homepage', 'HomeController@index');
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -42,6 +43,7 @@ Route::group(array('prefix' => 'ajax'), function(){
 	Route::get('users', 'AjaxController@getUsers');
 	Route::get('users/{user_id}', 'AjaxController@getUser');
 	Route::post('users/update','UserController@update');
+	Route::get('users/create-image/{userId}','AjaxController@createUserImage');
 });
 
 /* API Controller */

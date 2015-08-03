@@ -67,26 +67,26 @@
                                   <input type="submit" id="search-submit">
                                 </form>
 -->
-
+                            
+                                <ul class="nav navbar-nav navbar-left">
+                                    <li><a href="{{url('homepage')}}">Home</a> </li>
+                                    <li><a href="{{url('orders')}}">Orders</a> </li>
+                                    <li><a href="{{url('users')}}">Users</a> </li>
+                                </ul>
                         </div>
                                          <div class="col-md-8 col-sm-8">
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
-                                       <li> <a href="#">Orders (1)</a> </li>
-                                        <li> <a href="#">My Inbox (2)</a> </li>
-                                        
-                                        
-                                      
-                                            
 					@if (Auth::guest())
 						<li> <a class="btn btn-default signin" href="{{ url('/auth/login') }}" role="button">Sign In</a> </li>
 						<li> <a class="btn btn-default signup" href="{{ url('/auth/register') }}" role="button">REGISTER</a> </li>
 					@else                        
-                        <li> <a href="{{url('dashboard')}}">Dashboard</a> </li>
-                        <li> <a href="{{url('users')}}">Users</a> </li>
+                       <!--  <li> <a href="{{url('dashboard')}}">Dashboard</a> </li>
+                        <li> <a href="{{url('users')}}">Users</a> </li> -->
+                        
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi, {{(Auth::user()->roles()->first()->slug == 'doctor') ? 'Dr.':''}} {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
@@ -132,9 +132,30 @@
             </section>
             
     </div> <!-- / CMS Page Content -->
-    <div id="main-container" class="container"> <!-- Main Content -->
+    <div ng-controller="initApp" id="main-container" class="container"> <!-- Main Content -->
            <div class="row">
+            <div class="col-sm-3 content-bg">
+                <h4>Navigation</h4>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="javascript:void(0)">My Inbox (3)</a></li>
+                  <li>
+                    <a ng-show="awaiting_void" href="javascript:void(0)" ng-click="filterStatus('awaiting_doctor_review')">Awaiting Doctor Review (@{{awaiting_count}})</a>
+                    <a ng-show="awaiting_url" href="{{url('orders')}}">Awaiting Doctor Review (@{{awaiting_count}})</a>
+                  </li>                  
+                  <li>
+                    <a ng-show="prescription_void" href="javascript:void(0)" ng-click="filterStatus('prescription_approved')">Prescription Approved (@{{prescription_approved_count}})</a>
+                    <a ng-show="prescription_url" href="{{url('orders')}}">Prescription Approved (@{{prescription_approved_count}})</a>
+                  </li>
+
+                </ul>
+                <h4>Quick Select</h4>
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="#">[ Prescription Approved ]</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 content-bg">
                 @yield('content')                    
+            </div>
            </div>
     </div> <!-- / Main Content -->
 

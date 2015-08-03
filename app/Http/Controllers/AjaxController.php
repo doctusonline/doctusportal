@@ -11,6 +11,7 @@ use App\Files;
 use Auth;
 use App\User;
 use Bican\Roles\Models\Role;
+use App\Activities;
 class AjaxController extends Controller {
 
 	// public function __construct()
@@ -81,15 +82,14 @@ class AjaxController extends Controller {
 		return $pdf;
 	}
 
-	public function updateOrder(Request $request, Orders $orders){
+	public function updateOrder(Request $request, Activities $activities){
 		$user = Auth::user();
-		$order_id = $request->get('order_id');
-		$status_code = $request->get('status_code');
-		$orders->order_id_mage = $order_id;
-		$orders->status_code = $status_code;
-		$orders->save();
-		$orders->user()->detach($user->id);
-		$orders->user()->attach($user->id);
+		$activities->order_id_mage = $request->get('order_id');
+		$activities->type = $request->get('type');
+		$activities->value = $request->get('value');
+		$activities->save();
+		$activities->user()->detach();
+		$activities->user()->attach($user->id);
 	}
 
 	public function generatePDF(Request $request, FPDF $pdf, Files $file, Orders $orders){
@@ -233,6 +233,33 @@ class AjaxController extends Controller {
 	public function getUser(User $users, $user_id){
 		$data = ['user'=>$users->find($user_id),'role'=>$users->find($user_id)->roles()->get()];
 		return $data;
+	}
+
+	public function createUserImage(User $user, $userId)
+	{
+		// Height and Width of the image
+		try
+		{
+			$user = $user->find($userId);
+			$firstName = $user->first_name;
+			$lastName = $user->last_name;
+
+			$width = 230;
+			$height = 218;
+
+			//GD library's functions
+			$image = imageCreate($width, $height);
+			$background = imageColorAllocate($image, 42, 109, 26);  //Use different combination of RGB Values for different Shades of Green
+			$fontColor = imageColorAllocate($image, 255, 255, 255); //Font Color is Kept White
+			$font = 'fonts/Lato-Lig-webfont.ttf'; // Path fot ttf file
+			imagettftext($image, 100, 0, 20, 150, $fontColor, $font, $firstName.$lastName); //[Source_Image,Font_Size,Angle,X_Co-ordinate,y_Co-ordinate,Font_color,Fonts,TEXT]
+			imagepng($image,'images/profile_pic/'.$userId.'.png'); // Save the png image
+			//return true;
+		}
+		catch(Exception $e)
+		{
+			//return false;
+		}
 	}
 
 }

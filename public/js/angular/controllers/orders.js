@@ -13,8 +13,13 @@ var sortingOrder = 'name'; //default sort
 app.controller('initApp', function($scope, $filter, $http) {
 	var app_env = $scope.appEnv;
 	$scope.isCollapsed = true;
+	$scope.awaiting_count = 0;
+	$scope.prescription_approved_count = 0;
 	$scope.selectedStatus = 'awaiting_doctor_review';
-	firstLoad($scope, $filter, $http, 'awaiting_doctor_review');
+	firstLoad($scope, $filter, $http, 'awaiting_doctor_review');	
+	getTotal($scope, $http);
+	$scope.awaiting_void = true;
+	$scope.prescription_void = true;
 	$scope.filterStatus = function(status){
 		firstLoad($scope, $filter, $http, status);
 	};
@@ -153,7 +158,6 @@ app.controller('initApp', function($scope, $filter, $http) {
 		        $scope.items.splice(idxInItems,1);
 		        $scope.search();
 
-		       
 			    $http({
 		            method:'GET',
 		            url : mage_hostname+'/secured-api/update_status.php?apiKey=7e56fb7d3287772f05bbf31dba4a85d5&order_id='+orderid+'&status='+status+'&time='+Math.random(),
@@ -161,8 +165,10 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    .success(function(data){
 					jQuery('.loading').hide();
 
+					getTotal($scope, $http);
+		       
 					//$http.post('http://localhost/doctusportal/public/ajax/update/order',{order_id:orderid,status_code:status})
-				    $http.post(hostname+'/ajax/update/order',{order_id:orderid,status_code:status})
+				    $http.post(hostname+'/ajax/update/order',{order_id:orderid,value:status,type:'status_code'})
 				    .success(function(response){	
 				    	
 				    });
@@ -190,7 +196,14 @@ app.controller('initApp', function($scope, $filter, $http) {
 		            method:'GET',
 		            url : mage_hostname+'/secured-api/reorder.php?apiKey=7e56fb7d3287772f05bbf31dba4a85d5&orderid='+orderid+'&productid='+productid+'&repeat='+repeat,
 		        	dataType: "jsonp"})
-			    .success(function(repeat){
+			    .success(function(response){
+
+					getTotal($scope, $http);
+		       
+			    	$http.post(hostname+'/ajax/update/order',{order_id:orderid,value:repeat,type:'repeats'})
+				    .success(function(response){	
+				    	
+				    });
 			    	jQuery('#main-container').removeClass('disabled');
 			    	jQuery('.loading').hide();
 			    	jQuery('.message-portal').html('Order# '+orderid+'<br />Updated repeats');			    		
@@ -245,3 +258,12 @@ app.controller('initApp', function($scope, $filter, $http) {
     });
 	
 	};
+
+
+var getTotal = function($scope, $http){
+	 $http.get(mage_hostname+'/secured-api/orders-total.php?apiKey=7e56fb7d3287772f05bbf31dba4a85d5&time='+Math.random())
+    .success(function(response){ 
+    	$scope.awaiting_count = response.awaiting_count;
+		$scope.prescription_approved_count = response.prescription_approved_count;
+    });
+}

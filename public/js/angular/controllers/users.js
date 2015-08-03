@@ -4,10 +4,15 @@ if (document.location.hostname == "localhost"){
 	hostname = 'http://localhost/doctusportal/public'
 }
 
+mage_hostname = 'http://52.64.118.158';
 var sortingOrder = 'name'; //default sort
 
-app.controller('initUser', function($scope, $filter, $http) {
-	
+app.controller('initApp', function($scope, $filter, $http) {
+	$scope.awaiting_count = 0;
+	$scope.prescription_approved_count = 0;
+	$scope.awaiting_url = true;
+	$scope.prescription_url = true;
+	getTotal($scope, $http);
 	jQuery('#main-container').addClass('disabled');
 	jQuery('.loading').show();
  	$http.get(hostname+'/ajax/users')
@@ -123,7 +128,11 @@ app.controller('initUser', function($scope, $filter, $http) {
 		  	console.log(role);
 		  	$http.post(hostname+'/ajax/users/update',{user_id:user_id,first_name:first_name,last_name:last_name,email:email,telephone:telephone,role:role})
 		  	.success(function(response){
-		  		console.log(response);
+		  		$http.get(hostname+'/ajax/users/create-image/'+user_id)
+			  	.success(function(response){
+			  		
+			  	});
+
 		  		jQuery('.message-portal').css('z-index','10000');
 		  		jQuery('.message-portal').html('Updated user');			    		
 			    jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
@@ -173,3 +182,10 @@ app.controller('initUser', function($scope, $filter, $http) {
     });
 
 });
+var getTotal = function($scope, $http){
+	 $http.get(mage_hostname+'/secured-api/orders-total.php?apiKey=7e56fb7d3287772f05bbf31dba4a85d5&time='+Math.random())
+    .success(function(response){ 
+    	$scope.awaiting_count = response.awaiting_count;
+		$scope.prescription_approved_count = response.prescription_approved_count;
+    });
+}
