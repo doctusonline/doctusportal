@@ -33,7 +33,7 @@ class HomeController extends Controller {
 	public function index(Activities $activities)
 	{
 		$user = Auth::user();
-		$activities = $activities->all();
+		$activities = $activities->orderBy('id','desc')->limit(10)->get();
 		$filename = asset('/images/profile_pic/'.$user->id.'.png');
 		$file_headers = @get_headers($filename);
 		if($file_headers[0] == 'HTTP/1.0 404 Not Found')

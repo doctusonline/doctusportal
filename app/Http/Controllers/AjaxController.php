@@ -262,4 +262,8 @@ class AjaxController extends Controller {
 		}
 	}
 
+	public function activities(Activities $activities){
+		return $activities->all()->orderBy('created_at','asc');
+	}
+
 }

@@ -183,5 +183,6 @@
     
     
 
+    <script type='text/javascript' src="{{ asset('js/angular/global-function.js') }}"></script>
 </body>
 </html>

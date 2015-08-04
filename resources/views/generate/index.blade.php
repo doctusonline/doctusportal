@@ -38,7 +38,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
 <script src="{{ asset('/js/angular/services/orderService.js') }}"></script>
 <script src="{{ asset('/js/angular/controllers/orderController.js') }}"></script>
 
