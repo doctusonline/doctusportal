@@ -45,6 +45,7 @@ Route::group(array('prefix' => 'ajax'), function(){
 	Route::post('users/update','UserController@update');
 	Route::get('users/create-image/{userId}','AjaxController@createUserImage');
 	Route::get('activities','AjaxController@activities');
+	Route::get('test/email','AjaxController@email');
 });
 
 /* API Controller */

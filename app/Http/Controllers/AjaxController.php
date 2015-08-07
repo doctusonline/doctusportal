@@ -266,4 +266,14 @@ class AjaxController extends Controller {
 		return $activities->all()->orderBy('created_at','asc');
 	}
 
+	public function email(){		
+		$to      = 'archie.quito@gmail.com';
+		$subject = 'the subject - cron test';
+		$message = 'hello';
+		$headers = 'From: webmaster@ideatesystems.com' . "\r\n" .
+		    'Reply-To: webmaster@example.com' . "\r\n" .
+		    'X-Mailer: PHP/' . phpversion();
+
+		print_r(mail($to, $subject, $message, $headers));
+	}
 }
