@@ -174,7 +174,7 @@ class CheckoutController extends Controller {
 			}
 	        $in_page = 'success';
 	    }
-
+	    header('Access-Control-Allow-Methods: *');
 		return  $in_page;
 
 	}
