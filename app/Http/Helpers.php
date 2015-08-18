@@ -15,4 +15,16 @@ function format_interval($datetime = "2015-04-21 8:00:00") {
 
     return $result;
 }
+
+
+function get_avatar($userId){
+    $filename = asset('/images/profile_pic/'.$userId.'.png');
+    $file_headers = @get_headers($filename);
+    if($file_headers[0] == 'HTTP/1.0 404 Not Found')
+    {
+        $filename = url('/images/profile_pic/person-icon.png'); 
+    }
+    return $filename;
+}
+
 ?>

@@ -212,6 +212,22 @@ app.controller('initApp', function($scope, $filter, $http) {
 			    });
 		    };
 
+		    $scope.popupMessageForm = function(item){
+		    	$scope.recipient_name = item.name;
+		    	$scope.recipient_email = item.email;
+		    };
+		    $scope.sendMessage = function(){
+		    	var subject = $scope.subject;
+		    	var message = $scope.message;
+		    	$http.post(hostname+'/messages/send',{subject:subject,message:message})
+			  	.success(function(response){
+			  		
+			  		jQuery('.message-portal').css('z-index','10000');
+			  		jQuery('.message-portal').html('Message has been sent');			    		
+				    jQuery('.message-portal').fadeIn(100).delay(3000).fadeOut();
+			  	});
+		    };
+
 		  $scope.itemStatus = function(e){
 		  	return e.replace(/_/g," ");
 		  };

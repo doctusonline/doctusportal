@@ -9,7 +9,7 @@
   <div>
   	<!-- <iframe src="http://localhost/doctus/mage-api/api-test.php" width="100%" height="300px"></iframe> -->
     <div class="row">
-      <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -25,7 +25,47 @@
           </div>
         </div>
         </div>
+        </div> -->
+        <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">@{{header_title}}</h4>
+          </div>
+          <div class="modal-body">
+                <div class="">
+
+                    <div class="form-group">
+                    <label class="to-message">To: @{{recipient_name}} (@{{recipient_email}})</label>
+                    </div>
+                    <!-- Subject Form Input -->
+                    <div class="form-group">
+                        {!! Form::label('subject', 'Subject', ['class' => 'control-label']) !!}
+                        <input type="text" id="subject" ng-model="subject" name="subject" class="form-control">
+                    </div>
+                    <!-- Message Form Input -->
+                    <div class="form-group">
+                        {!! Form::label('message', 'Message', ['class' => 'control-label']) !!}
+                        <textarea id="message" rows="10" cols="50" ng-model="message" name="message" class="form-control"></textarea>
+                    </div>
+                    <!-- Submit Form Input -->
+                    <div class="form-group">
+                        <input type="button" id="send_msg_btn" value="Send" ng-click="sendMessage()" class="btn btn-primary"/>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
+        
+      </div>
+    </div>
+    <!-- END Modal -->
       <div class="col-md-6">
           <h4 class="">Order List</h4>
   			
@@ -106,7 +146,7 @@
 			          	<span>Customer Name: </span><label>@{{item.name}}</label>
 			          </fieldset>	  
 			          <fieldset>
-			          	<span>Email: </span><label>@{{item.email}}</label>
+			          	<span>Email: </span><label><a href="javascript:void(0)" ng-click="popupMessageForm(item)" data-toggle="modal" data-target="#myModal">@{{item.email}}</a></label>
 			          </fieldset>	      	
 			        </div>
 			        <div class="col-md-3 select-status">

@@ -125,7 +125,7 @@ app.controller('initApp', function($scope, $filter, $http) {
 		  	var email = $scope.email;
 		  	var telephone = $scope.telephone;
 		  	var role = $scope.role;
-		  	console.log(role);
+		  	console.log(first_name);
 		  	$http.post(hostname+'/ajax/users/update',{user_id:user_id,first_name:first_name,last_name:last_name,email:email,telephone:telephone,role:role})
 		  	.success(function(response){
 		  		$http.get(hostname+'/ajax/users/create-image/'+user_id)

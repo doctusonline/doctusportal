@@ -9,9 +9,11 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 use Bican\Roles\Contracts\HasRoleAndPermissionContract;
 use Bican\Roles\Traits\HasRoleAndPermission;
+
+use Cmgmyr\Messenger\Traits\Messagable;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
-	use Authenticatable, CanResetPassword, HasRoleAndPermission;
+	use Authenticatable, CanResetPassword, HasRoleAndPermission, Messagable;
 
 	/**
 	 * The database table used by the model.

@@ -33,13 +33,9 @@ class HomeController extends Controller {
 	public function index(Activities $activities)
 	{
 		$user = Auth::user();
-		$activities = $activities->orderBy('id','desc')->limit(10)->get();
-		$filename = asset('/images/profile_pic/'.$user->id.'.png');
-		$file_headers = @get_headers($filename);
-		if($file_headers[0] == 'HTTP/1.0 404 Not Found')
-		{
-			$filename = url('/images/profile_pic/person-icon.png'); 
-		}
+		$activities = $activities->user()->orderBy('id','desc')->limit(10)->get();
+		//dd($activities);
+		$filename = get_avatar($user->id);
 		return view('home',compact('user', 'activities','filename'));
 	}
 

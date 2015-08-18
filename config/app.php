@@ -147,7 +147,11 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		'Barryvdh\DomPDF\ServiceProvider',
-
+		/*
+		 * Messaging Class...
+		 */
+		Cmgmyr\Messenger\MessengerServiceProvider::class,
+		'Collective\Html\HtmlServiceProvider',
 	],
 
 	/*
@@ -199,6 +203,8 @@ return [
 		'HTML'=> 'Illuminate\Html\HtmlFacade',
 		'PDF' => 'Barryvdh\DomPDF\Facade',
 
+		'Form' => 'Collective\Html\FormFacade',
+      	'Html' => 'Collective\Html\HtmlFacade',
 	],
 
 ];

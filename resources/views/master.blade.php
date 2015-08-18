@@ -3,22 +3,22 @@
 <head>
     
     <link rel="icon" type="image/png" href="https://doctus.com.au/skin/frontend/default/doctus_theme/doctus-favicon.png">     
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>@yield('headtitle') | Doctus Online</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>@yield('headtitle') | Doctus Online</title>
 
-	<!-- <link href="{{ asset('/css/app.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ asset('/css/app.css') }}" rel="stylesheet"> -->
 
-	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -78,22 +78,25 @@
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
+
                 <li><a href="{{URL::to('messages')}}">Messages @include('messenger.unread-count')</a></li>
                 <li><a href="{{URL::to('messages/create')}}">New Message</a></li>
-					@if (Auth::guest())
-						<li> <a class="btn btn-default signin" href="{{ url('/auth/login') }}" role="button">Sign In</a> </li>
-						<li> <a class="btn btn-default signup" href="{{ url('/auth/register') }}" role="button">REGISTER</a> </li>
-					@else                        
+
+
+          @if (Auth::guest())
+            <li> <a class="btn btn-default signin" href="{{ url('/auth/login') }}" role="button">Sign In</a> </li>
+            <li> <a class="btn btn-default signup" href="{{ url('/auth/register') }}" role="button">REGISTER</a> </li>
+          @else                        
                        <!--  <li> <a href="{{url('dashboard')}}">Dashboard</a> </li>
                         <li> <a href="{{url('users')}}">Users</a> </li> -->
-                        
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-							</ul>
-						</li>
-					@endif                                            
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Hi, {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+              </ul>
+            </li>
+          @endif                                            
                                             
                                        
                                         
@@ -136,26 +139,8 @@
     </div> <!-- / CMS Page Content -->
     <div ng-controller="initApp" id="main-container" class="container"> <!-- Main Content -->
            <div class="row">
-            <div class="col-sm-3 content-bg">
-                <h4>Navigation</h4>
-                <ul class="nav nav-pills nav-stacked">
-                  <li><a href="javascript:void(0)">My Inbox (3)</a></li>
-                  <li>
-                    <a ng-show="awaiting_void" href="javascript:void(0)" ng-click="filterStatus('awaiting_doctor_review')">Awaiting Doctor Review (@{{awaiting_count}})</a>
-                    <a ng-show="awaiting_url" href="{{url('orders')}}">Awaiting Doctor Review (@{{awaiting_count}})</a>
-                  </li>                  
-                  <li>
-                    <a ng-show="prescription_void" href="javascript:void(0)" ng-click="filterStatus('prescription_approved')">Prescription Approved (@{{prescription_approved_count}})</a>
-                    <a ng-show="prescription_url" href="{{url('orders')}}">Prescription Approved (@{{prescription_approved_count}})</a>
-                  </li>
-
-                </ul>
-                <h4>Quick Select</h4>
-                <ul class="nav nav-pills nav-stacked">
-                  <li><a href="#">[ Prescription Approved ]</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-9 content-bg">
+           
+            <div class="content-bg">
                 @yield('content')                    
             </div>
            </div>

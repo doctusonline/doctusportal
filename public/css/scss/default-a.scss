@@ -140,6 +140,65 @@
 	text-transform: capitalize;
 }
 
+.message-wrapper{
+	height: 300px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	padding: 24px;
+
+	/* Let's get this party started */ 
+	::-webkit-scrollbar { 
+		width: 12px; 
+	} 
+	/* Track */ 
+	::-webkit-scrollbar-track { 
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+		-webkit-border-radius: 10px; border-radius: 10px; 
+	} 
+	/* Handle */ 
+	::-webkit-scrollbar-thumb { 
+		-webkit-border-radius: 10px; 
+		border-radius: 10px; background: rgba(255,0,0,0.8); 
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	} 
+	::-webkit-scrollbar-thumb:window-inactive { 
+		background: rgba(255,0,0,0.4); 
+	}
+
+}
+
+.message-box{
+	position: relative;
+	textarea{
+		border-radius: 0;
+		margin-top: 15px;
+	}
+	input[type="submit"]{
+		bottom: 7px;
+	    font-size: 15px;
+	    height: 27px;
+	    padding: 0 8px;
+	    position: absolute;
+	    right: 10px;
+	    width: 58px;
+	}
+}
+
+.message-wrapper{
+	.media{
+	    border-radius: 15px;
+	    padding: 12px;
+	    width: 325px;
+		background-color: #E5E5EA;
+		margin-bottom: 20px;
+	}
+	.mine{
+		background-color: #65e24f;
+	    margin-left: 172px;		
+	    color: #fff;
+	}
+}
+
 @media (max-width: 450px){
 	.message{
 		width: 94% !important;
